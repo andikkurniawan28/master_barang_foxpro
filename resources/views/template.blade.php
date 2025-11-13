@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Master Barang FoxPro</title>
+    <title>PENATAAN MASTER BARANG</title>
 
     <!-- Custom fonts for this template-->
     <link href="/sbadmin2/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -53,7 +53,7 @@
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-warehouse"></i>
                 </div>
-                <div class="sidebar-brand-text mx-3">M-Barang</div>
+                <div class="sidebar-brand-text mx-3">PMB</div>
             </a>
 
             <!-- Divider -->

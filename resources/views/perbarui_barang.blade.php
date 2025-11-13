@@ -2,7 +2,7 @@
 
 @section('content')
     <div class="container-fluid">
-        <h1 class="h3 mb-4 fw-bold text-center">PENATAAN MASTER BARANG</h1>
+    <h1 class="h3 mb-3"><strong>Perbarui Barang</strong></h1>
 
         <div class="card shadow-sm p-4">
             <form id="formMasterBarang">
