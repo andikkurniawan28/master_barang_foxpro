@@ -23,6 +23,6 @@ class PerbaruiBarangController extends Controller
 
     public function process(Request $request)
     {
-        //
+        return $request;
     }
 }
