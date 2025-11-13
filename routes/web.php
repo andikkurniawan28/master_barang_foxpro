@@ -29,7 +29,8 @@ Route::get('/api_dropdown_d3/{kb}', ApiDropdownD3Controller::class)->name('api_d
 Route::get('/api_dropdown_d4/{kb}', ApiDropdownD4Controller::class)->name('api_dropdown_d4');
 Route::get('/api_dropdown_d5/{kb}', ApiDropdownD5Controller::class)->name('api_dropdown_d5');
 Route::get('/api_dropdown_d6/{d5}', ApiDropdownD6Controller::class)->name('api_dropdown_d6');
-Route::get('/api_simpan_spesifikasi/d6', [ApiSimpanSpesifikasiController::class, 'simpanD6'])->name('api_simpan_spesifikasi.d6');
-Route::get('/api_simpan_spesifikasi/d8', [ApiSimpanSpesifikasiController::class, 'simpanD8'])->name('api_simpan_spesifikasi.d8');
-Route::get('/api_simpan_spesifikasi/d10', [ApiSimpanSpesifikasiController::class, 'simpanD10'])->name('api_simpan_spesifikasi.d10');
-Route::get('/api_simpan_spesifikasi/d12', [ApiSimpanSpesifikasiController::class, 'simpanD12'])->name('api_simpan_spesifikasi.d12');
+Route::post('/api_simpan_spesifikasi/d6', [ApiSimpanSpesifikasiController::class, 'simpanD6'])->name('api_simpan_spesifikasi.d6');
+Route::post('/api_simpan_spesifikasi/d8', [ApiSimpanSpesifikasiController::class, 'simpanD8'])->name('api_simpan_spesifikasi.d8');
+Route::post('/api_simpan_spesifikasi/d10', [ApiSimpanSpesifikasiController::class, 'simpanD10'])->name('api_simpan_spesifikasi.d10');
+Route::post('/api_simpan_spesifikasi/d12', [ApiSimpanSpesifikasiController::class, 'simpanD12'])->name('api_simpan_spesifikasi.d12');
+
