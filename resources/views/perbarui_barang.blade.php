@@ -32,7 +32,7 @@
                             <h5 class="fw-bold text-primary mb-0">
                                 Kode Barang Baru:
                                 <span id="kodeBarangResult" class="text-dark">{{ $barang->KD_BRG ?? 000000000000 }}</span>
-                                <input type="hidden" name="kode_barang_hasil" id="kode_barang_hasil">
+                                <input type="hidden" name="KD_BRG" id="kode_barang_hasil">
                             </h5>
 
                             {{-- <h5 class="fw-bold text-primary mb-0">
@@ -43,7 +43,7 @@
                             <small class="text-secondary">
                                 Diskripsi Barang Baru:
                                 <span id="deskripsiBarangResult" class="text-dark"></span>
-                                <input type="hidden" name="deskripsi_barang_hasil" id="deskripsi_barang_hasil">
+                                <input type="hidden" name="DISKRIPSI_BARU" id="deskripsi_barang_hasil">
                             </small>
 
                             <br><br>
@@ -60,8 +60,8 @@
                                     Kelompok Utama
                                 </div>
                                 <div class="col-md-7">
-                                    <select name="d1" id="d1" class="form-select form-select-sm select2"
-                                        required>
+                                    <select name="D1" id="d1" class="form-select form-select-sm select2"
+                                        >
                                         <option value="">-- Pilih Kelompok Utama --</option>
                                         @foreach ($ka_data as $ka)
                                             <option data-ka="{{ $ka->KA }}" value="{{ $ka->D1 }}"
@@ -78,8 +78,8 @@
                                     Sub Kelompok Utama
                                 </div>
                                 <div class="col-md-7">
-                                    <select name="d2" id="d2" class="form-select form-select-sm select2"
-                                        required>
+                                    <select name="D2" id="d2" class="form-select form-select-sm select2"
+                                        >
                                         <option value="">-- Pilih Sub Kelompok Utama --</option>
                                     </select>
                                 </div>
@@ -90,8 +90,8 @@
                                     Kategori
                                 </div>
                                 <div class="col-md-7">
-                                    <select name="d3" id="d3" class="form-select form-select-sm select2"
-                                        required>
+                                    <select name="D3" id="d3" class="form-select form-select-sm select2"
+                                        >
                                         <option value="">-- Pilih Kategori --</option>
                                     </select>
                                 </div>
@@ -102,8 +102,8 @@
                                     Sub Kategori
                                 </div>
                                 <div class="col-md-7">
-                                    <select name="d4" id="d4" class="form-select form-select-sm select2"
-                                        required>
+                                    <select name="D4" id="d4" class="form-select form-select-sm select2"
+                                        >
                                         <option value="">-- Pilih Sub Kategori --</option>
                                     </select>
                                 </div>
@@ -114,8 +114,8 @@
                                     Turunan Sub Kategori
                                 </div>
                                 <div class="col-md-7">
-                                    <select name="d5" id="d5" class="form-select form-select-sm select2"
-                                        required>
+                                    <select name="D5" id="d5" class="form-select form-select-sm select2"
+                                        >
                                         <option value="">-- Pilih Turunan Sub Kategori --</option>
                                     </select>
                                 </div>
@@ -133,8 +133,8 @@
                                 <label class="form-label fw-semibold mb-0">Nama Barang</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control form-control-sm" name="nama_barang"
-                                    id="nama_barang" placeholder="Masukkan nama barang..." value="{{ $barang->NAMA }}">
+                                <input type="text" class="form-control form-control-sm" name="NAMA_BARU"
+                                    id="NAMA_BARU" placeholder="Masukkan nama barang..." value="{{ $barang->NAMA }}">
                             </div>
                         </div>
 
@@ -143,10 +143,10 @@
                                 <label class="form-label fw-semibold mb-0">Diskripsi</label>
                             </div>
                             <div class="col-md-8">
-                                {{-- <textarea class="form-control" name="DISKRIPSI">{{ $barang->DISKRIPSI }}</textarea> --}}
-                                <input type="text" class="form-control form-control-sm" name="nama_barang"
+                                <textarea class="form-control" name="DISKRIPSI">{{ $barang->DISKRIPSI }}</textarea>
+                                {{-- <input type="text" class="form-control form-control-sm" name="nama_barang"
                                     id="nama_barang" placeholder="Masukkan nama barang..."
-                                    value="{{ $barang->DISKRIPSI }}">
+                                    value="{{ $barang->DISKRIPSI }}"> --}}
                             </div>
                         </div>
 
@@ -155,8 +155,8 @@
                                 <label class="form-label fw-semibold mb-0">Istilah Lapangan</label>
                             </div>
                             <div class="col-md-8">
-                                <input type="text" class="form-control form-control-sm" name="istilah_lapangan"
-                                    id="istilah_lapangan" placeholder="Masukkan istilah lapangan...">
+                                <input type="text" class="form-control form-control-sm" name="NM_ALIAS"
+                                    id="NM_ALIAS" placeholder="Masukkan istilah lapangan...">
                             </div>
                         </div>
 
@@ -166,7 +166,7 @@
                                 Ukuran / Warna / Tipe / Seri
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select form-select-sm select2" name="d6" id="d6">
+                                <select class="form-select form-select-sm select2" name="D6" id="d6">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
@@ -186,7 +186,7 @@
                                 Volume / Kapasitas / Daya
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select form-select-sm select2" name="d8" id="d8">
+                                <select class="form-select form-select-sm select2" name="D8" id="d8">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
@@ -206,7 +206,7 @@
                                 Merk / Material
                             </div>
                             <div class="col-md-4">
-                                <select class="form-select form-select-sm select2" name="d10" id="d10">
+                                <select class="form-select form-select-sm select2" name="D10" id="d10">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
@@ -226,7 +226,7 @@
                                 Keterangan
                             </div>
                             {{-- <div class="col-md-4">
-                                <select class="form-select form-select-sm select2" name="d12" id="d12">
+                                <select class="form-select form-select-sm select2" name="D12" id="d12">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                     @foreach ($d12_data as $item)
                                         <option value="{{ $item->D12 }}">{{ $item->D12 }} | {{ $item->KET }}</option>
