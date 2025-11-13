@@ -16,6 +16,7 @@
                 <table id="barangTable" class="table table-bordered table-hover table-striped w-100 text-center">
                     <thead>
                         <tr>
+                            <th>ID</th>
                             <th>Kode</th>
                             <th>Nama</th>
                             <th>Aksi</th>
@@ -37,6 +38,7 @@
             ajax: "{{ route('daftar_barang') }}",
             order: [[0, 'asc']],
             columns: [
+                { data: 'ID', name: 'ID' },
                 { data: 'KDBRG', name: 'KDBRG' },
                 { data: 'NAMA', name: 'NAMA' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }

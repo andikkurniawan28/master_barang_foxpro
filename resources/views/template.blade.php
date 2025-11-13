@@ -427,7 +427,7 @@
     </div> --}}
 
     <!-- Bootstrap core JavaScript-->
-    <script src="/sbadmin2/vendor/jquery/jquery.min.js"></script>
+    {{-- <script src="/sbadmin2/vendor/jquery/jquery.min.js"></script> --}}
     <script src="/sbadmin2/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <!-- Core plugin JavaScript-->

@@ -14,13 +14,12 @@ class DaftarBarangController extends Controller
     public function __invoke(Request $request)
     {
         if ($request->ajax()) {
-            $data = DB::table(DB::raw('(SELECT NAMA, KDBRG FROM barang_asli) AS b'));
+            $data = DB::table(DB::raw('(SELECT ID, NAMA, KDBRG FROM barang_asli) AS b'));
             return DataTables::of($data)
                 ->addIndexColumn()
-
                 ->addColumn('action', function ($row) {
                     $buttons = '<div class="btn-group" role="group">';
-                        $editUrl = route('daftar_barang');
+                        $editUrl = route('perbarui_barang.index', $row->ID);
                         $buttons .= '<a href="' . $editUrl . '" class="btn btn-sm btn-success"><i class="bi bi-arrow-repeat"></i> Perbarui</a>';
                     $buttons .= '</div>';
                     return $buttons;
