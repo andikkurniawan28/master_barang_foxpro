@@ -14,15 +14,11 @@ class PerbaruiBarangController extends Controller
     {
         $barang = DB::table('barang_asli')->where('ID', $id)->get()->last();
         $ka_data = DB::table('ka')->get();
-        $kb_data = DB::table('kb')->get();
-        $kc_data = DB::table('kc')->get();
-        $kd_data = DB::table('kd')->get();
-        $ke_data = DB::table('ke')->get();
         $d6_data = DB::table('d6')->get();
         $d8_data = DB::table('d8')->get();
         $d10_data = DB::table('d10')->get();
         $d12_data = DB::table('d12')->get();
-        return view('perbarui_barang', compact('barang', 'ka_data', 'kb_data', 'kc_data', 'kd_data', 'ke_data', 'd6_data', 'd8_data', 'd10_data', 'd12_data', 'id'));
+        return view('perbarui_barang', compact('barang', 'ka_data', 'd6_data', 'd8_data', 'd10_data', 'd12_data', 'id'));
     }
 
     public function process(Request $request)

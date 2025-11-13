@@ -44,8 +44,8 @@
                     </small>
                 </div>
 
-
                 {{-- Famili / Kelompok Besar --}}
+                {{-- D1–D5 --}}
                 <div class="mt-4">
                     <h5 class="fw-bold text-decoration-underline mb-3"><strong>Famili / Kelompok Besar</strong></h5>
 
@@ -57,7 +57,7 @@
                             <select name="d1" id="d1" class="form-select form-select-sm select2" required>
                                 <option value="">-- Pilih Kelompok Utama --</option>
                                 @foreach ($ka_data as $ka)
-                                    <option value="{{ $ka->D1 }}" {{ $barang->D1 == $ka->KA ? 'selected' : '' }}>
+                                    <option data-ka="{{ $ka->KA }}" value="{{ $ka->D1 }}" {{ $barang->D1 == $ka->KA ? 'selected' : '' }}>
                                         {{ $ka->KA }} | {{ $ka->KET }}
                                     </option>
                                 @endforeach
@@ -72,11 +72,6 @@
                         <div class="col-md-8">
                             <select name="d2" id="d2" class="form-select form-select-sm select2" required>
                                 <option value="">-- Pilih Sub Kelompok Utama --</option>
-                                {{-- @foreach ($kb_data as $kb)
-                                    <option value="{{ $kb->KB }}" {{ old('d2') == $kb->KB ? 'selected' : '' }}>
-                                        {{ $kb->KB }} | {{ $kb->KET }}
-                                    </option>
-                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -88,11 +83,6 @@
                         <div class="col-md-8">
                             <select name="d3" id="d3" class="form-select form-select-sm select2" required>
                                 <option value="">-- Pilih Kategori --</option>
-                                {{-- @foreach ($kc_data as $kc)
-                                    <option value="{{ $kc->KC }}" {{ old('d3') == $kc->KC ? 'selected' : '' }}>
-                                        {{ $kc->KC }} | {{ $kc->KET }}
-                                    </option>
-                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -104,11 +94,6 @@
                         <div class="col-md-8">
                             <select name="d4" id="d4" class="form-select form-select-sm select2" required>
                                 <option value="">-- Pilih Sub Kategori --</option>
-                                {{-- @foreach ($kd_data as $kd)
-                                    <option value="{{ $kd->KD }}" {{ old('d4') == $kd->KD ? 'selected' : '' }}>
-                                        {{ $kd->KD }} | {{ $kd->KET }}
-                                    </option>
-                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -120,11 +105,6 @@
                         <div class="col-md-8">
                             <select name="d5" id="d5" class="form-select form-select-sm select2" required>
                                 <option value="">-- Pilih Turunan Sub Kategori --</option>
-                                {{-- @foreach ($ke_data as $ke)
-                                    <option value="{{ $ke->KE }}" {{ old('d5') == $ke->KE ? 'selected' : '' }}>
-                                        {{ $ke->KE }} | {{ $ke->KET }}
-                                    </option>
-                                @endforeach --}}
                             </select>
                         </div>
                     </div>
@@ -167,11 +147,11 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm" name="d6_text"
+                        <input type="text" class="form-control form-control-sm" name="d6_text" id="d6_text"
                             placeholder="Input baru...">
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-sm btn-success w-100">
+                        <button type="button" class="btn btn-sm btn-success w-100" id="simpanD6">
                             <i class="bi bi-save"></i> Simpan
                         </button>
                     </div>
@@ -190,11 +170,11 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm" name="d8_text"
+                        <input type="text" class="form-control form-control-sm" name="d8_text" id="d8_text"
                             placeholder="Input baru...">
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-sm btn-success w-100">
+                        <button type="button" class="btn btn-sm btn-success w-100" id="simpanD8">
                             <i class="bi bi-save"></i> Simpan
                         </button>
                     </div>
@@ -213,11 +193,11 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm" name="d10_text"
+                        <input type="text" class="form-control form-control-sm" name="d10_text" id="d10_text"
                             placeholder="Input baru...">
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-sm btn-success w-100">
+                        <button type="button" class="btn btn-sm btn-success w-100" id="simpanD10">
                             <i class="bi bi-save"></i> Simpan
                         </button>
                     </div>
@@ -236,24 +216,23 @@
                         </select>
                     </div>
                     <div class="col-md-2">
-                        <input type="text" class="form-control form-control-sm" name="d12_text"
+                        <input type="text" class="form-control form-control-sm" name="d12_text" id="d12_text"
                             placeholder="Input baru...">
                     </div>
                     <div class="col-md-2">
-                        <button type="button" class="btn btn-sm btn-success w-100">
+                        <button type="button" class="btn btn-sm btn-success w-100" id="simpanD12">
                             <i class="bi bi-save"></i> Simpan
                         </button>
                     </div>
                 </div>
 
-
                 <div class="text-center mt-4">
                     <button type="submit" class="btn btn-primary px-4">
                         <i class="bi bi-save"></i> Simpan
                     </button>
-                    <button type="reset" class="btn btn-secondary px-4">
+                    {{-- <button type="reset" class="btn btn-secondary px-4">
                         <i class="bi bi-arrow-counterclockwise"></i> Bersihkan
-                    </button>
+                    </button> --}}
                 </div>
 
             </form>
@@ -282,7 +261,8 @@ $(document).ready(function() {
                     d2Select.empty().append('<option value="">-- Pilih Sub Kelompok Utama --</option>');
                     if(response && response.length > 0){
                         response.forEach(function(item){
-                            d2Select.append('<option value="'+item.D2+'">'+item.KB+' | '+item.KET+'</option>');
+                            // d2Select.append('<option value="'+item.D2+'">'+item.KB+' | '+item.KET+'</option>');
+                            d2Select.append('<option value="'+item.D2+'" data-kb="'+item.KB+'">'+item.KB+' | '+item.KET+'</option>');
                         });
                     } else {
                         d2Select.append('<option value="">-- Tidak ada data --</option>');
@@ -290,7 +270,7 @@ $(document).ready(function() {
                     d2Select.trigger('change.select2');
                 },
                 error: function() {
-                    alert('Terjadi kesalahan saat memuat data D2.');
+                    alert('Resource tidak ditemukan untuk D2.');
                 }
             });
         } else {
@@ -318,7 +298,8 @@ $(document).ready(function() {
                     d3Select.empty().append('<option value="">-- Pilih Kategori --</option>');
                     if(response && response.length > 0){
                         response.forEach(function(item){
-                            d3Select.append('<option value="'+item.D3+'">'+item.KC+' | '+item.KET+'</option>');
+                            // d3Select.append('<option value="'+item.D3+'">'+item.KC+' | '+item.KET+'</option>');
+                            d3Select.append('<option value="'+item.D3+'" data-kc="'+item.KC+'">'+item.KC+' | '+item.KET+'</option>');
                         });
                     } else {
                         d3Select.append('<option value="">-- Tidak ada data --</option>');
@@ -326,7 +307,7 @@ $(document).ready(function() {
                     d3Select.trigger('change.select2');
                 },
                 error: function() {
-                    alert('Terjadi kesalahan saat memuat data D3.');
+                    alert('Resource tidak ditemukan untuk D3.');
                 }
             });
         }
@@ -350,7 +331,8 @@ $(document).ready(function() {
                     d4Select.empty().append('<option value="">-- Pilih Sub Kategori --</option>');
                     if(response && response.length > 0){
                         response.forEach(function(item){
-                            d4Select.append('<option value="'+item.D4+'">'+item.KD+' | '+item.KET+'</option>');
+                            // d4Select.append('<option value="'+item.D4+'">'+item.KD+' | '+item.KET+'</option>');
+                            d4Select.append('<option value="'+item.D4+'" data-kd="'+item.KD+'">'+item.KD+' | '+item.KET+'</option>');
                         });
                     } else {
                         d4Select.append('<option value="">-- Tidak ada data --</option>');
@@ -358,7 +340,7 @@ $(document).ready(function() {
                     d4Select.trigger('change.select2');
                 },
                 error: function() {
-                    alert('Terjadi kesalahan saat memuat data D4.');
+                    alert('Resource tidak ditemukan untuk D4.');
                 }
             });
         }
@@ -382,7 +364,8 @@ $(document).ready(function() {
                     d5Select.empty().append('<option value="">-- Pilih Turunan Sub Kategori --</option>');
                     if(response && response.length > 0){
                         response.forEach(function(item){
-                            d5Select.append('<option value="'+item.D5+'">'+item.KE+' | '+item.KET+'</option>');
+                            // d5Select.append('<option value="'+item.D5+'">'+item.KE+' | '+item.KET+'</option>');
+                            d5Select.append('<option value="'+item.D5+'" data-ke="'+item.KE+'">'+item.KE+' | '+item.KET+'</option>');
                         });
                     } else {
                         d5Select.append('<option value="">-- Tidak ada data --</option>');
@@ -390,7 +373,7 @@ $(document).ready(function() {
                     d5Select.trigger('change.select2');
                 },
                 error: function() {
-                    alert('Terjadi kesalahan saat memuat data D5.');
+                    alert('Resource tidak ditemukan untuk D5.');
                 }
             });
         }
@@ -401,6 +384,70 @@ $(document).ready(function() {
     if($('#d2').val()) { $('#d2').trigger('change'); }
     if($('#d3').val()) { $('#d3').trigger('change'); }
     if($('#d4').val()) { $('#d4').trigger('change'); }
+
+    // --- Button Simpan D6 ---
+    $('#simpanD6').click(function() {
+        let d6Value = $('#d6_text').val();
+        console.log('D6 Text:', d6Value);
+    });
+
+    // --- Button Simpan D8 ---
+    $('#simpanD8').click(function() {
+        let d8Value = $('#d8_text').val();
+        console.log('D8 Text:', d8Value);
+    });
+
+    // --- Button Simpan D10 ---
+    $('#simpanD10').click(function() {
+        let d10Value = $('#d10_text').val();
+        console.log('D10 Text:', d10Value);
+    });
+
+    // --- Button Simpan D12 ---
+    $('#simpanD12').click(function() {
+        let d12Value = $('#d12_text').val();
+        console.log('D12 Text:', d12Value);
+    });
+
+    function generateKodeBarang() {
+        let d1 = $('#d1 option:selected').data('ka')?.toString() || '0';
+        let d2 = $('#d2 option:selected').data('kb')?.toString() || '0';
+        let d3 = $('#d3 option:selected').data('kc')?.toString() || '0';
+        let d4 = $('#d4 option:selected').data('kd')?.toString() || '0';
+        let d5 = $('#d5 option:selected').data('ke')?.toString() || '0';
+        let d6 = $('#d6').val() || '00';
+        let d8 = $('#d8').val() || '00';
+        let d10 = $('#d10').val() || '00';
+        let d12 = $('#d12').val() || '0';
+
+        // gabungkan sesuai urutan digit
+        let kode = (d1 + d2 + d3 + d4 + d5).padEnd(5,'0') +
+                   (d6).padEnd(2,'0') +
+                   (d8).padEnd(2,'0') +
+                   (d10).padEnd(2,'0') +
+                   (d12).padEnd(1,'0');
+
+        $('#kodeBarangResult').text(kode);
+        $('#kode_barang_hasil').val(kode);
+
+        console.log('Kode Barang Terbaru:', d1);
+    }
+
+    // --- Dropdown D1 → D5 ---
+    $('#d1, #d2, #d3, #d4, #d5, #d6, #d8, #d10, #d12').change(function() {
+        generateKodeBarang();
+    });
+
+    // Trigger awal jika ada selected value
+    if($('#d1').val()) { $('#d1').trigger('change'); }
+    if($('#d2').val()) { $('#d2').trigger('change'); }
+    if($('#d3').val()) { $('#d3').trigger('change'); }
+    if($('#d4').val()) { $('#d4').trigger('change'); }
+    if($('#d5').val()) { $('#d5').trigger('change'); }
+    if($('#d6').val()) { $('#d6').trigger('change'); }
+    if($('#d8').val()) { $('#d8').trigger('change'); }
+    if($('#d10').val()) { $('#d10').trigger('change'); }
+    if($('#d12').val()) { $('#d12').trigger('change'); }
 
 });
 </script>
