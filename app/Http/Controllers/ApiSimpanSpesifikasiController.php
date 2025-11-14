@@ -44,6 +44,35 @@ class ApiSimpanSpesifikasiController extends Controller
         return $chars[$i1] . $chars[$i2];
     }
 
+    private function nextOneDigit($max)
+    {
+        // Jika belum ada data → mulai dari '0'
+        if (!$max || trim($max) === '') {
+            return '1';
+        }
+
+        // Daftar karakter valid (36 karakter)
+        $chars = array_merge(range('0', '9'), range('A', 'Z')); // [0-9, A-Z]
+
+        $max = strtoupper($max);
+
+        // Cari posisi karakter saat ini
+        $index = array_search($max, $chars);
+
+        // Jika karakter tidak ditemukan, reset ke 0
+        if ($index === false) {
+            return '0';
+        }
+
+        // Jika belum mencapai karakter terakhir → increment
+        if ($index < count($chars) - 1) {
+            return $chars[$index + 1];
+        }
+
+        // Jika sudah Z → kembalikan Z (mentok)
+        return 'Z';
+    }
+
     public function simpanD6(Request $request)
     {
         $request->validate([
@@ -150,8 +179,38 @@ class ApiSimpanSpesifikasiController extends Controller
         ]);
     }
 
+
     public function simpanD12(Request $request)
     {
-        // DB::table('d12')->where('ID', $id)
+        $request->validate([
+            'd5' => 'required|string|max:12',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $d5 = $request->d5;
+
+        $data = DB::table('d12')->where('D5', $d5)->get();
+
+        $maxD12 = $data->max('D12');
+
+        $nextD12 = $this->nextOneDigit($maxD12);
+
+        DB::table('d12')->insert([
+            'D5' => $d5,
+            'D12' => $nextD12,
+            'KET' => $request->keterangan,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D12 berhasil disimpan.',
+            'data' => [
+                'D5' => $d5,
+                'D12' => $nextD12,
+                'KET' => $request->keterangan,
+            ],
+            'maxD12' => $maxD12,
+            'nextD12' => $nextD12,
+        ]);
     }
 }

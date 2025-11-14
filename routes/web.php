@@ -9,6 +9,8 @@ use App\Http\Controllers\ApiDropdownD5Controller;
 use App\Http\Controllers\ApiDropdownD6Controller;
 use App\Http\Controllers\PerbaruiBarangController;
 use App\Http\Controllers\ApiSimpanSpesifikasiController;
+use App\Http\Controllers\BarangBelumDiperbaruiController;
+use App\Http\Controllers\BarangSudahDiperbaruiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -22,6 +24,8 @@ use App\Http\Controllers\ApiSimpanSpesifikasiController;
 */
 
 Route::get('/', DaftarBarangController::class)->name('daftar_barang');
+Route::get('/barang_sudah_diperbarui', BarangSudahDiperbaruiController::class)->name('barang_sudah_diperbarui');
+Route::get('/barang_belum_diperbarui', BarangBelumDiperbaruiController::class)->name('barang_belum_diperbarui');
 Route::get('/perbarui_barang/{id}', [PerbaruiBarangController::class, 'index'])->name('perbarui_barang.index');
 Route::post('/perbarui_barang/{id}', [PerbaruiBarangController::class, 'process'])->name('perbarui_barang.process');
 Route::get('/api_dropdown_d2/{ka}', ApiDropdownD2Controller::class)->name('api_dropdown_d2');

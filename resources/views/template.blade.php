@@ -61,10 +61,24 @@
             <hr class="sidebar-divider my-0">
 
             <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
+            <li class="nav-item @yield('daftar_barang')">
                 <a class="nav-link" href="{{ route('daftar_barang') }}">
                     <i class="fas fa-fw fa-box"></i>
-                    <span>Daftar Barang</span></a>
+                    <span>Semua Barang</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item @yield('barang_sudah_diperbarui')">
+                <a class="nav-link" href="{{ route('barang_sudah_diperbarui') }}">
+                    <i class="fas fa-fw fa-check"></i>
+                    <span>Barang Sudah Diperbarui</span></a>
+            </li>
+
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item @yield('barang_belum_diperbarui')">
+                <a class="nav-link" href="{{ route('barang_belum_diperbarui') }}">
+                    <i class="fas fa-fw fa-hourglass-half"></i>
+                    <span>Barang Belum Diperbarui</span></a>
             </li>
 
             {{-- <!-- Divider -->
@@ -390,7 +404,7 @@
             <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Your Website 2020</span>
+                        <span>Penataan Master Barang - 2025</span>
                     </div>
                 </div>
             </footer>

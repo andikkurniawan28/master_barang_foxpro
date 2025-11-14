@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 use Yajra\DataTables\DataTables;
 use Illuminate\Support\Facades\DB;
 
-class DaftarBarangController extends Controller
+class BarangSudahDiperbaruiController extends Controller
 {
     /**
      * Handle the incoming request.
@@ -14,7 +14,10 @@ class DaftarBarangController extends Controller
     public function __invoke(Request $request)
     {
         if ($request->ajax()) {
-            $data = DB::table(DB::raw('(SELECT ID, NAMA, KDBRG, KD_BRG, NAMA_BARU, KET FROM barang_asli) AS b'));
+            $data = DB::table('barang_asli')
+                ->select(['ID', 'KD_BRG', 'NM_BRG', 'NAMA_BARU', 'DISKRIPSI_BARU', 'NM_ALIAS'])
+                ->whereNotNull('KD_BRG')
+                ->get();
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
@@ -28,6 +31,6 @@ class DaftarBarangController extends Controller
                 ->make(true);
         }
 
-        return view('daftar_barang');
+        return view('barang_sudah_diperbarui');
     }
 }

@@ -1,12 +1,12 @@
 @extends('template')
 
-@section('daftar_barang')
+@section('barang_belum_diperbarui')
 {{ "active" }}
 @endsection
 
 @section('content')
 <div class="container-fluid py-0 px-0">
-    <h1 class="h3 mb-3"><strong>Semua Barang</strong></h1>
+    <h1 class="h3 mb-3"><strong>Barang Belum Diperbarui</strong></h1>
 
     <div class="d-flex justify-content-between align-roles-center mb-3">
         <a href="{{ route('daftar_barang') }}" class="btn btn-primary">
@@ -21,11 +21,11 @@
                     <thead>
                         <tr>
                             {{-- <th>ID</th> --}}
-                            <th>KODE_LAMA</th>
-                            <th>NAMA_LAMA</th>
-                            <th>KET</th>
-                            <th>KODE_BARU</th>
-                            <th>NAMA_BARU</th>
+                            {{-- <th>KODE LAMA</th>
+                            <th>NAMA LAMA</th> --}}
+                            <th>DEFAULT_CO</th>
+                            <th>NAMA</th>
+                            <th>DISKRIPSI</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
@@ -42,15 +42,16 @@
         $('#barangTable').DataTable({
             processing: true,
             serverSide: true,
-            ajax: "{{ route('daftar_barang') }}",
+            ajax: "{{ route('barang_belum_diperbarui') }}",
             order: [[1, 'asc']],
             columns: [
                 // { data: 'ID', name: 'ID' },
-                { data: 'KDBRG', name: 'KDBRG' },
+                { data: 'DEFAULT_CO', name: 'DEFAULT_CO' },
                 { data: 'NAMA', name: 'NAMA' },
-                { data: 'KET', name: 'KET' },
-                { data: 'KD_BRG', name: 'KD_BRG' },
-                { data: 'NAMA_BARU', name: 'NAMA_BARU' },
+                { data: 'DISKRIPSI', name: 'DISKRIPSI' },
+                // { data: 'KD_BRG', name: 'KD_BRG' },
+                // { data: 'NAMA_BARU', name: 'NAMA_BARU' },
+                // { data: 'DISKRIPSI_BARU', name: 'DISKRIPSI_BARU' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
         });
