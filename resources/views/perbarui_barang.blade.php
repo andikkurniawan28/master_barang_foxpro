@@ -162,7 +162,7 @@
                                 <label class="fw-semibold mb-0">Diskripsi</label>
                             </div>
                             <div class="col-md-9">
-                                <textarea class="form-control" name="DISKRIPSI_BARU">{{ $barang->DISKRIPSI_BARU ?? $barang->DISKRIPSI }}</textarea>
+                                <textarea class="form-control" id="DISKRIPSI_BARU" name="DISKRIPSI_BARU">{{ $barang->DISKRIPSI_BARU ?? $barang->DISKRIPSI }}</textarea>
                             </div>
                         </div>
 
@@ -728,7 +728,7 @@
             });
 
             // --- Dropdown D1 → D12 ---
-            $('#d1, #d2, #d3, #d4, #d5, #d6, #d8, #d10, #d12').change(function() {
+            $('#d1, #d2, #d3, #d4, #d5, #d6, #d8, #d10, #d12, #NAMA_BARU, #DISKRIPSI_BARU').change(function() {
                 generateKodeBarang();
             });
 

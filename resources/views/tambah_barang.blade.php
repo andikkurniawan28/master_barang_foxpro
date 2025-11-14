@@ -1,5 +1,9 @@
 @extends('template')
 
+@section('tambah_barang')
+{{ "active" }}
+@endsection
+
 @section('content')
     <div class="container-fluid">
         <h1 class="h3 mb-1"><strong>Tambah Data Barang</strong></h1>
@@ -116,7 +120,7 @@
                                 <label class="fw-semibold mb-0">Diskripsi</label>
                             </div>
                             <div class="col-md-9">
-                                <textarea class="form-control" name="DISKRIPSI_BARU"></textarea>
+                                <textarea class="form-control" id="DISKRIPSI_BARU" name="DISKRIPSI_BARU"></textarea>
                             </div>
                         </div>
 
@@ -658,7 +662,7 @@
             });
 
             // --- Dropdown D1 → D12 ---
-            $('#d1, #d2, #d3, #d4, #d5, #d6, #d8, #d10, #d12').change(function() {
+            $('#d1, #d2, #d3, #d4, #d5, #d6, #d8, #d10, #d12, #NAMA_BARU, #DISKRIPSI_BARU').change(function() {
                 generateKodeBarang();
             });
 
