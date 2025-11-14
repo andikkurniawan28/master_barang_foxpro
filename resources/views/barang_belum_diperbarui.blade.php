@@ -9,7 +9,7 @@
     <h1 class="h3 mb-3"><strong>Barang Belum Diperbarui</strong></h1>
 
     <div class="d-flex justify-content-between align-roles-center mb-3">
-        <a href="{{ route('daftar_barang') }}" class="btn btn-primary">
+        <a href="{{ route('tambah_barang.index') }}" class="btn btn-primary">
             <i class="bi bi-plus-circle"></i> Tambah
         </a>
     </div>

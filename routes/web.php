@@ -1,7 +1,9 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\TestController;
 use App\Http\Controllers\DaftarBarangController;
+use App\Http\Controllers\TambahBarangController;
 use App\Http\Controllers\ApiDropdownD2Controller;
 use App\Http\Controllers\ApiDropdownD3Controller;
 use App\Http\Controllers\ApiDropdownD4Controller;
@@ -37,4 +39,6 @@ Route::post('/api_simpan_spesifikasi/d6', [ApiSimpanSpesifikasiController::class
 Route::post('/api_simpan_spesifikasi/d8', [ApiSimpanSpesifikasiController::class, 'simpanD8'])->name('api_simpan_spesifikasi.d8');
 Route::post('/api_simpan_spesifikasi/d10', [ApiSimpanSpesifikasiController::class, 'simpanD10'])->name('api_simpan_spesifikasi.d10');
 Route::post('/api_simpan_spesifikasi/d12', [ApiSimpanSpesifikasiController::class, 'simpanD12'])->name('api_simpan_spesifikasi.d12');
-
+Route::get('/test', TestController::class)->name('test');
+Route::get('/tambah_barang', [TambahBarangController::class, 'index'])->name('tambah_barang.index');
+Route::post('/tambah_barang', [TambahBarangController::class, 'process'])->name('tambah_barang.process');
