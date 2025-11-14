@@ -84,7 +84,7 @@
             <!-- Nav Item - Dashboard -->
             <li class="nav-item @yield('tambah_barang')">
                 <a class="nav-link" href="{{ route('tambah_barang.index') }}">
-                    <i class="fas fa-fw fa-plus"></i>
+                    <i class="fas fa-fw fa-box-open"></i>
                     <span>Tambah Data Barang</span></a>
             </li>
 
