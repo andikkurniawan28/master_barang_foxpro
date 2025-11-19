@@ -24,6 +24,8 @@ class BarangBelumDiperbaruiController extends Controller
                     $buttons = '<div class="btn-group" role="group">';
                         $editUrl = route('perbarui_barang.index', $row->ID);
                         $buttons .= '<a href="' . $editUrl . '" class="btn btn-sm btn-success"><i class="bi bi-arrow-repeat"></i> Perbarui</a>';
+                        $detailUrl = route('detail_barang', $row->ID);
+                        $buttons .= '<a href="' . $detailUrl . '" class="btn btn-sm btn-info"><i class="bi bi-info"></i> Detail</a>';
                     $buttons .= '</div>';
                     return $buttons;
                 })

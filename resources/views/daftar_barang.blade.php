@@ -23,7 +23,7 @@
                             {{-- <th>ID</th> --}}
                             <th>KODE_LAMA</th>
                             <th>NAMA_LAMA</th>
-                            <th>KET</th>
+                            <th>DISKRIPSI</th>
                             <th>KODE_BARU</th>
                             <th>NAMA_BARU</th>
                             <th>AKSI</th>

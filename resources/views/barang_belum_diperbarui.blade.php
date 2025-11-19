@@ -23,7 +23,7 @@
                             {{-- <th>ID</th> --}}
                             {{-- <th>KODE LAMA</th>
                             <th>NAMA LAMA</th> --}}
-                            <th>DEFAULT_CO</th>
+                            <th>KODE LAMA</th>
                             <th>NAMA</th>
                             <th>DISKRIPSI</th>
                             <th>AKSI</th>

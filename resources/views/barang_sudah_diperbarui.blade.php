@@ -23,11 +23,11 @@
                             {{-- <th>ID</th> --}}
                             {{-- <th>KODE LAMA</th>
                             <th>NAMA LAMA</th> --}}
-                            <th>KD_BRG</th>
-                            <th>NAMA_BARU</th>
-                            <th>NM_ALIAS</th>
-                            <th>NM_BRG</th>
-                            <th>DISKRIPSI BARU</th>
+                            <th>KODE</th>
+                            <th>NAMA</th>
+                            <th>ISTILAH LAPANGAN</th>
+                            {{-- <th>NM_BRG</th> --}}
+                            <th>DISKRIPSI</th>
                             <th>AKSI</th>
                         </tr>
                     </thead>
@@ -53,7 +53,6 @@
                 { data: 'KD_BRG', name: 'KD_BRG' },
                 { data: 'NAMA_BARU', name: 'NAMA_BARU' },
                 { data: 'NM_ALIAS', name: 'NM_ALIAS' },
-                { data: 'NM_BRG', name: 'NM_BRG' },
                 { data: 'DISKRIPSI_BARU', name: 'DISKRIPSI_BARU' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]

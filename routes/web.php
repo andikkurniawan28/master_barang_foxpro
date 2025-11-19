@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TestController;
 use App\Http\Controllers\DaftarBarangController;
+use App\Http\Controllers\DetailBarangController;
 use App\Http\Controllers\TambahBarangController;
 use App\Http\Controllers\ApiDropdownD2Controller;
 use App\Http\Controllers\ApiDropdownD3Controller;
@@ -42,3 +43,4 @@ Route::post('/api_simpan_spesifikasi/d12', [ApiSimpanSpesifikasiController::clas
 Route::get('/test', TestController::class)->name('test');
 Route::get('/tambah_barang', [TambahBarangController::class, 'index'])->name('tambah_barang.index');
 Route::post('/tambah_barang', [TambahBarangController::class, 'process'])->name('tambah_barang.process');
+Route::get('/detail_barang/{id}', DetailBarangController::class)->name('detail_barang');
