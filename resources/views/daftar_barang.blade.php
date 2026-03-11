@@ -20,7 +20,7 @@
                 <table id="barangTable" class="table table-bordered table-hover table-striped w-100 text-center">
                     <thead>
                         <tr>
-                            {{-- <th>ID</th> --}}
+                            <th>ID</th>
                             <th>KODE_LAMA</th>
                             <th>NAMA_LAMA</th>
                             <th>DISKRIPSI</th>
@@ -43,12 +43,12 @@
             processing: true,
             serverSide: true,
             ajax: "{{ route('daftar_barang') }}",
-            order: [[1, 'asc']],
+            order: [[0, 'asc']],
             columns: [
-                // { data: 'ID', name: 'ID' },
+                { data: 'ID', name: 'ID' },
                 { data: 'KDBRG', name: 'KDBRG' },
                 { data: 'NAMA', name: 'NAMA' },
-                { data: 'KET', name: 'KET' },
+                { data: 'DISKRIPSI', name: 'DISKRIPSI' },
                 { data: 'KD_BRG', name: 'KD_BRG' },
                 { data: 'NAMA_BARU', name: 'NAMA_BARU' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }

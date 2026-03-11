@@ -245,7 +245,7 @@
                 }
 
                 $.ajax({
-                    url: '/api_simpan_spesifikasi/d6',
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d6',
                     type: 'POST',
                     data: {
                         _token: $('meta[name="csrf-token"]').attr(
@@ -294,7 +294,7 @@
                 }
 
                 $.ajax({
-                    url: '/api_simpan_spesifikasi/d8',
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d8',
                     type: 'POST',
                     data: {
                         _token: $('meta[name="csrf-token"]').attr(
@@ -343,7 +343,7 @@
                 }
 
                 $.ajax({
-                    url: '/api_simpan_spesifikasi/d10',
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d10',
                     type: 'POST',
                     data: {
                         _token: $('meta[name="csrf-token"]').attr(
@@ -393,7 +393,7 @@
                 }
 
                 $.ajax({
-                    url: '/api_simpan_spesifikasi/d12',
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d12',
                     type: 'POST',
                     data: {
                         _token: $('meta[name="csrf-token"]').attr(
@@ -518,7 +518,7 @@
                     .trigger('change.select2');
                 if (ka) {
                     $.ajax({
-                        url: '/api_dropdown_d2/' + ka,
+                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d2/' + ka,
                         type: 'GET',
                         dataType: 'json',
                         success: function(response) {
@@ -559,7 +559,7 @@
 
                 if (kb) {
                     $.ajax({
-                        url: '/api_dropdown_d3/' + kb,
+                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d3/' + kb,
                         type: 'GET',
                         dataType: 'json',
                         success: function(response) {
@@ -596,7 +596,7 @@
 
                 if (kc) {
                     $.ajax({
-                        url: '/api_dropdown_d4/' + kc,
+                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d4/' + kc,
                         type: 'GET',
                         dataType: 'json',
                         success: function(response) {
@@ -633,7 +633,7 @@
 
                 if (kd) {
                     $.ajax({
-                        url: '/api_dropdown_d5/' + kd,
+                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d5/' + kd,
                         type: 'GET',
                         dataType: 'json',
                         success: function(response) {
@@ -716,7 +716,7 @@
                 console.log('🔄 Fetch baru karena D1–D5 berubah:', d1sampaid5);
 
                 $.ajax({
-                    url: '/api_dropdown_d6/' + d1sampaid5,
+                    url: '/master_barang_foxpro/public/index.php/api_dropdown_d6/' + d1sampaid5,
                     type: 'GET',
                     dataType: 'json',
                     success: function(response) {
