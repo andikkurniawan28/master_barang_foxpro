@@ -20,7 +20,7 @@
                 <table id="barangTable" class="table table-bordered table-hover table-striped w-100 text-center">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             {{-- <th>KODE LAMA</th>
                             <th>NAMA LAMA</th> --}}
                             <th>KODE</th>

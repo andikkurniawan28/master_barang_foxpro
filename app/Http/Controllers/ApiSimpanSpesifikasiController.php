@@ -14,6 +14,8 @@ class ApiSimpanSpesifikasiController extends Controller
             return '01';
         }
 
+        $max = str_pad($max, 2, '0', STR_PAD_LEFT);
+
         // Buat daftar karakter valid
         $chars = array_merge(range('0', '9'), range('A', 'Z')); // [0..9, A..Z]
         $max = strtoupper($max);
@@ -42,6 +44,38 @@ class ApiSimpanSpesifikasiController extends Controller
 
         // Hasil akhir
         return $chars[$i1] . $chars[$i2];
+    }
+
+    private function tentukanUrutanSelanjutnya1Digit($max)
+    {
+        // Jika belum ada data
+        if (!$max) {
+            return '1';
+        }
+
+        $max = strtoupper($max);
+
+        // Jika masih angka 1-8
+        if (is_numeric($max) && $max < 9) {
+            return (string)($max + 1);
+        }
+
+        // Jika 9 maka lanjut ke Z
+        if ($max == '9') {
+            return 'Z';
+        }
+
+        // Jika huruf
+        if (ctype_alpha($max)) {
+            if ($max == 'A') {
+                return 'A'; // mentok
+            }
+
+            // Mundur satu huruf
+            return chr(ord($max) - 1);
+        }
+
+        return '1';
     }
 
     private function nextOneDigit($max)
@@ -107,8 +141,6 @@ class ApiSimpanSpesifikasiController extends Controller
         ]);
     }
 
-
-
     public function simpanD8(Request $request)
     {
         $request->validate([
@@ -142,8 +174,6 @@ class ApiSimpanSpesifikasiController extends Controller
             'nextD8' => $nextD8,
         ]);
     }
-
-
 
     public function simpanD10(Request $request)
     {
@@ -179,7 +209,6 @@ class ApiSimpanSpesifikasiController extends Controller
         ]);
     }
 
-
     public function simpanD12(Request $request)
     {
         $request->validate([
@@ -211,6 +240,142 @@ class ApiSimpanSpesifikasiController extends Controller
             ],
             'maxD12' => $maxD12,
             'nextD12' => $nextD12,
+        ]);
+    }
+
+    public function simpanD2(Request $request)
+    {
+        $request->validate([
+            'd1' => 'required|string|max:10',
+            'keterangan' => 'nullable|string|max:211',
+        ]);
+
+        $d1 = $request->d1;
+
+        $data = DB::table('kb')->where('D2', $d1)->get();
+
+        $maxD2 = $data->max('KB');
+
+        $nextD2 = $this->tentukanUrutanSelanjutnya1Digit($maxD2);
+
+        DB::table('kb')->insert([
+            'D2' => $d1,
+            'KB' => $nextD2,
+            'KET' => $request->keterangan,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D2 berhasil disimpan.',
+            'data' => [
+                'D2' => $d1,
+                'KB' => $nextD2,
+                'KET' => $request->keterangan,
+            ],
+            'maxD2' => $maxD2,
+            'nextD2' => $nextD2,
+        ]);
+    }
+
+    public function simpanD3(Request $request)
+    {
+        $request->validate([
+            'd2' => 'required|string|max:10',
+            'keterangan' => 'nullable|string|max:211',
+        ]);
+
+        $d2 = $request->d2;
+
+        $data = DB::table('kc')->where('D3', $d2)->get();
+
+        $maxD3 = $data->max('KC');
+
+        $nextD3 = $this->tentukanUrutanSelanjutnya1Digit($maxD3);
+
+        DB::table('kc')->insert([
+            'D3' => $d2,
+            'KC' => $nextD3,
+            'KET' => $request->keterangan,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D3 berhasil disimpan.',
+            'data' => [
+                'D3' => $d2,
+                'KC' => $nextD3,
+                'KET' => $request->keterangan,
+            ],
+            'maxD3' => $maxD3,
+            'nextD3' => $nextD3,
+        ]);
+    }
+
+    public function simpanD4(Request $request)
+    {
+        $request->validate([
+            'd3' => 'required|string|max:10',
+            'keterangan' => 'nullable|string|max:211',
+        ]);
+
+        $d3 = $request->d3;
+
+        $data = DB::table('kd')->where('D4', $d3)->get();
+
+        $maxD4 = $data->max('KD');
+
+        $nextD4 = $this->tentukanUrutanSelanjutnya1Digit($maxD4);
+
+        DB::table('kd')->insert([
+            'D4' => $d3,
+            'KD' => $nextD4,
+            'KET' => $request->keterangan,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D4 berhasil disimpan.',
+            'data' => [
+                'D4' => $d3,
+                'KD' => $nextD4,
+                'KET' => $request->keterangan,
+            ],
+            'maxD4' => $maxD4,
+            'nextD4' => $nextD4,
+        ]);
+    }
+
+    public function simpanD5(Request $request)
+    {
+        $request->validate([
+            'd4' => 'required|string|max:10',
+            'keterangan' => 'nullable|string|max:211',
+        ]);
+
+        $d4 = $request->d4;
+
+        $data = DB::table('ke')->where('D5', $d4)->get();
+
+        $maxD5 = $data->max('KE');
+
+        $nextD5 = $this->tentukanUrutanSelanjutnya1Digit($maxD5);
+
+        DB::table('ke')->insert([
+            'D5' => $d4,
+            'KE' => $nextD5,
+            'KET' => $request->keterangan,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D5 berhasil disimpan.',
+            'data' => [
+                'D5' => $d4,
+                'KE' => $nextD5,
+                'KET' => $request->keterangan,
+            ],
+            'maxD5' => $maxD5,
+            'nextD5' => $nextD5,
         ]);
     }
 }

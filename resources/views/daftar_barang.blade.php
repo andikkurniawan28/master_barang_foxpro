@@ -20,12 +20,12 @@
                 <table id="barangTable" class="table table-bordered table-hover table-striped w-100 text-center">
                     <thead>
                         <tr>
-                            <th>ID</th>
+                            <th>#</th>
                             <th>KODE_LAMA</th>
                             <th>NAMA_LAMA</th>
                             <th>DISKRIPSI</th>
                             <th>KODE_BARU</th>
-                            <th>NAMA_BARU</th>
+                            {{-- <th>NAMA_BARU</th> --}}
                             <th>AKSI</th>
                         </tr>
                     </thead>
@@ -50,7 +50,7 @@
                 { data: 'NAMA', name: 'NAMA' },
                 { data: 'DISKRIPSI', name: 'DISKRIPSI' },
                 { data: 'KD_BRG', name: 'KD_BRG' },
-                { data: 'NAMA_BARU', name: 'NAMA_BARU' },
+                // { data: 'NAMA_BARU', name: 'NAMA_BARU' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }
             ]
         });

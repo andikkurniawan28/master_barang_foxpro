@@ -44,3 +44,9 @@ Route::get('/test', TestController::class)->name('test');
 Route::get('/tambah_barang', [TambahBarangController::class, 'index'])->name('tambah_barang.index');
 Route::post('/tambah_barang', [TambahBarangController::class, 'process'])->name('tambah_barang.process');
 Route::get('/detail_barang/{id}', DetailBarangController::class)->name('detail_barang');
+
+// Baru
+Route::post('/api_simpan_spesifikasi/d2', [ApiSimpanSpesifikasiController::class, 'simpanD2'])->name('api_simpan_spesifikasi.d2');
+Route::post('/api_simpan_spesifikasi/d3', [ApiSimpanSpesifikasiController::class, 'simpanD3'])->name('api_simpan_spesifikasi.d3');
+Route::post('/api_simpan_spesifikasi/d4', [ApiSimpanSpesifikasiController::class, 'simpanD4'])->name('api_simpan_spesifikasi.d4');
+Route::post('/api_simpan_spesifikasi/d5', [ApiSimpanSpesifikasiController::class, 'simpanD5'])->name('api_simpan_spesifikasi.d5');

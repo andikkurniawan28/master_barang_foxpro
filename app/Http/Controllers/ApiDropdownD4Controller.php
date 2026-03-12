@@ -14,7 +14,8 @@ class ApiDropdownD4Controller extends Controller
         //     return null;
         // }
         // $d3 = $d3Record->D3;
-        $kdData = DB::table('kd')->where('D4', 'like', $kc.'%')->get();
+        // $kdData = DB::table('kd')->where('D4', 'like', $kc.'%')->get();
+        $kdData = DB::table('kd')->where('D4', $kc)->get();
         return $kdData->isEmpty() ? null : $kdData;
     }
 }

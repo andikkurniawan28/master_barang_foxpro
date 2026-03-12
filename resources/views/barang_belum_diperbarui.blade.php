@@ -20,7 +20,7 @@
                 <table id="barangTable" class="table table-bordered table-hover table-striped w-100 text-center">
                     <thead>
                         <tr>
-                            {{-- <th>ID</th> --}}
+                            <th>#</th>
                             {{-- <th>KODE LAMA</th>
                             <th>NAMA LAMA</th> --}}
                             <th>KODE LAMA</th>
@@ -45,7 +45,7 @@
             ajax: "{{ route('barang_belum_diperbarui') }}",
             order: [[1, 'asc']],
             columns: [
-                // { data: 'ID', name: 'ID' },
+                { data: 'ID', name: 'ID' },
                 { data: 'DEFAULT_CO', name: 'DEFAULT_CO' },
                 { data: 'NAMA', name: 'NAMA' },
                 { data: 'DISKRIPSI', name: 'DISKRIPSI' },

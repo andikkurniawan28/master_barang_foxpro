@@ -39,7 +39,7 @@
                                 <select name="D1" id="d1" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Kelompok Utama --</option>
                                     @foreach ($ka_data as $ka)
-                                        <option value="{{ $ka->D1 }}" data-ka="{{ $ka->KA }}">
+                                        <option value="{{ $ka->KA }}" data-ka="{{ $ka->KA }}">
                                             {{ $ka->KA }} | {{ $ka->KET }}
                                         </option>
                                     @endforeach
@@ -50,40 +50,76 @@
                         <!-- D2 -->
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Sub Kelompok Utama</div>
-                            <div class="col-md-9">
+                            <div class="col-md-5">
                                 <select name="D2" id="d2" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Sub Kelompok Utama --</option>
                                 </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d2_text"
+                                    placeholder="Input baru...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD2">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
                         <!-- D3 -->
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Kategori</div>
-                            <div class="col-md-9">
+                            <div class="col-md-5">
                                 <select name="D3" id="d3" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Kategori --</option>
                                 </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d3_text"
+                                    placeholder="Input baru...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD3">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
                         <!-- D4 -->
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Sub Kategori</div>
-                            <div class="col-md-9">
+                            <div class="col-md-5">
                                 <select name="D4" id="d4" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Sub Kategori --</option>
                                 </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d4_text"
+                                    placeholder="Input baru...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD4">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
                         <!-- D5 -->
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Turunan Sub Kategori</div>
-                            <div class="col-md-9">
+                            <div class="col-md-5">
                                 <select name="D5" id="d5" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Turunan Sub Kategori --</option>
                                 </select>
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d5_text"
+                                    placeholder="Input baru...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD5">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
                     </div>
@@ -98,8 +134,10 @@
                                 <label class="fw-semibold mb-0">Nama Barang</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="NAMA_BARU" id="NAMA_BARU"
-                                    value="" placeholder="Masukkan nama barang...">
+                                {{-- <input type="text" class="form-control" name="NAMA_BARU" id="NAMA_BARU"
+                                    value="" placeholder="Masukkan nama barang..."> --}}
+                                    <textarea class="form-control" name="NAMA_BARU" id="NAMA_BARU"
+    placeholder="Masukkan nama barang..."></textarea>
                             </div>
                         </div>
 
@@ -422,6 +460,203 @@
                 });
             });
 
+            // Ini function tambahan baru !!!!
+            // --- Button Simpan D2 ---
+            $('#simpanD2').click(function() {
+                let keterangan = $('#d2_text').val(); // ambil teks input D2
+                let kodeHasil = $('#kode_barang_hasil').val() || '';
+                let d1 = kodeHasil.substring(0, 1); // ambil 1 digit pertama sebagai D1
+
+                console.log('📦 Data yang akan dikirim ke API:');
+                console.log('➡️ D1:', d1);
+                console.log('➡️ Keterangan:', keterangan);
+
+                if (!d1 || d1 === '00000') {
+                    alert('D1–D1 belum lengkap, tidak bisa menyimpan data D2!');
+                    return;
+                }
+
+                if (!keterangan) {
+                    alert('Keterangan tidak boleh kosong!');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d2',
+                    type: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr(
+                        'content'), // ← tambahkan CSRF di sini
+                        d1: d1,
+                        keterangan: keterangan,
+                    },
+                    success: function(response) {
+                        console.log('✅ Berhasil simpan D2:', response);
+                        alert('Data D2 berhasil disimpan! Kode berikutnya: ' + response.nextD2);
+
+                        // Optional: langsung tambah ke dropdown D2
+                        $('#d2').append(
+                            $('<option>', {
+                                value: response.nextD2,
+                                text: response.nextD2 + ' | ' + keterangan,
+                                'data-text': keterangan,
+                            })
+                        ).trigger('change.select2');
+                    },
+                    error: function(xhr) {
+                        console.error('❌ Gagal simpan D2:', xhr.responseText);
+                        alert('Terjadi kesalahan saat menyimpan data D2.');
+                    }
+                });
+            });
+
+            // --- Button Simpan D3 ---
+            $('#simpanD3').click(function() {
+                let keterangan = $('#d3_text').val(); // ambil teks input D3
+                let kodeHasil = $('#kode_barang_hasil').val() || '';
+                let d2 = kodeHasil.substring(0, 2); // ambil 1 digit pertama sebagai D2
+
+                console.log('📦 Data yang akan dikirim ke API:');
+                console.log('➡️ D2:', d2);
+                console.log('➡️ Keterangan:', keterangan);
+
+                if (!d2 || d2 === '00000') {
+                    alert('D2–D2 belum lengkap, tidak bisa menyimpan data D3!');
+                    return;
+                }
+
+                if (!keterangan) {
+                    alert('Keterangan tidak boleh kosong!');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d3',
+                    type: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr(
+                        'content'), // ← tambahkan CSRF di sini
+                        d2: d2,
+                        keterangan: keterangan,
+                    },
+                    success: function(response) {
+                        console.log('✅ Berhasil simpan D3:', response);
+                        alert('Data D3 berhasil disimpan! Kode berikutnya: ' + response.nextD3);
+
+                        // Optional: langsung tambah ke dropdown D3
+                        $('#d3').append(
+                            $('<option>', {
+                                value: response.nextD3,
+                                text: response.nextD3 + ' | ' + keterangan,
+                                'data-text': keterangan,
+                            })
+                        ).trigger('change.select2');
+                    },
+                    error: function(xhr) {
+                        console.error('❌ Gagal simpan D3:', xhr.responseText);
+                        alert('Terjadi kesalahan saat menyimpan data D3.');
+                    }
+                });
+            });
+
+            // --- Button Simpan D4 ---
+            $('#simpanD4').click(function() {
+                let keterangan = $('#d4_text').val(); // ambil teks input D4
+                let kodeHasil = $('#kode_barang_hasil').val() || '';
+                let d3 = kodeHasil.substring(0, 3); // ambil 1 digit pertama sebagai D3
+
+                console.log('📦 Data yang akan dikirim ke API:');
+                console.log('➡️ D3:', d3);
+                console.log('➡️ Keterangan:', keterangan);
+
+                if (!d3 || d3 === '00000') {
+                    alert('D3–D3 belum lengkap, tidak bisa menyimpan data D4!');
+                    return;
+                }
+
+                if (!keterangan) {
+                    alert('Keterangan tidak boleh kosong!');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d4',
+                    type: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr(
+                        'content'), // ← tambahkan CSRF di sini
+                        d3: d3,
+                        keterangan: keterangan,
+                    },
+                    success: function(response) {
+                        console.log('✅ Berhasil simpan D4:', response);
+                        alert('Data D4 berhasil disimpan! Kode berikutnya: ' + response.nextD4);
+
+                        // Optional: langsung tambah ke dropdown D4
+                        $('#d4').append(
+                            $('<option>', {
+                                value: response.nextD4,
+                                text: response.nextD4 + ' | ' + keterangan,
+                                'data-text': keterangan,
+                            })
+                        ).trigger('change.select2');
+                    },
+                    error: function(xhr) {
+                        console.error('❌ Gagal simpan D4:', xhr.responseText);
+                        alert('Terjadi kesalahan saat menyimpan data D4.');
+                    }
+                });
+            });
+
+            // --- Button Simpan D5 ---
+            $('#simpanD5').click(function() {
+                let keterangan = $('#d5_text').val(); // ambil teks input D5
+                let kodeHasil = $('#kode_barang_hasil').val() || '';
+                let d4 = kodeHasil.substring(0, 4); // ambil 1 digit pertama sebagai D4
+
+                console.log('📦 Data yang akan dikirim ke API:');
+                console.log('➡️ D4:', d4);
+                console.log('➡️ Keterangan:', keterangan);
+
+                if (!d4 || d4 === '00000') {
+                    alert('D4–D4 belum lengkap, tidak bisa menyimpan data D5!');
+                    return;
+                }
+
+                if (!keterangan) {
+                    alert('Keterangan tidak boleh kosong!');
+                    return;
+                }
+
+                $.ajax({
+                    url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d5',
+                    type: 'POST',
+                    data: {
+                        _token: $('meta[name="csrf-token"]').attr(
+                        'content'), // ← tambahkan CSRF di sini
+                        d4: d4,
+                        keterangan: keterangan,
+                    },
+                    success: function(response) {
+                        console.log('✅ Berhasil simpan D5:', response);
+                        alert('Data D5 berhasil disimpan! Kode berikutnya: ' + response.nextD5);
+
+                        // Optional: langsung tambah ke dropdown D5
+                        $('#d5').append(
+                            $('<option>', {
+                                value: response.nextD5,
+                                text: response.nextD5 + ' | ' + keterangan,
+                                'data-text': keterangan,
+                            })
+                        ).trigger('change.select2');
+                    },
+                    error: function(xhr) {
+                        console.error('❌ Gagal simpan D5:', xhr.responseText);
+                        alert('Terjadi kesalahan saat menyimpan data D5.');
+                    }
+                });
+            });
+
             // --- Tombol Reset ---
             $('#reset').click(function(e) {
                 console.log('reset');
@@ -469,6 +704,15 @@
                 let d10 = $('#d10').val() || '00';
                 let d12 = $('#d12').val() || '0';
 
+                // let d1 = $('#d1 option:selected').data('keterangan')?.toString() || '-';
+                let d2_inner = $('#d2 option:selected').data('keterangan')?.toString() || '-';
+                let d3_inner = $('#d3 option:selected').data('keterangan')?.toString() || '-';
+                let d4_inner = $('#d4 option:selected').data('keterangan')?.toString() || '-';
+                let d5_inner = $('#d5 option:selected').data('keterangan')?.toString() || '-';
+
+                let nama_barang_by_dropdown = `${d2_inner} - ${d3_inner} - ${d4_inner} - ${d5_inner}`;
+                $('#NAMA_BARU').val(nama_barang_by_dropdown);
+
                 // gabungkan kode barang
                 let kode = (d1 + d2 + d3 + d4 + d5).padEnd(5, '0') +
                     (d6).padEnd(2, '0') +
@@ -512,6 +756,7 @@
             // --- D1 → D2 ---
             $('#d1').change(function() {
                 let ka = $(this).val();
+                console.log('ka:' + ka);
                 // Reset D2-D5 setiap D1 berubah
                 $('#d2, #d3, #d4, #d5')
                     .empty().append('<option value="">-- Pilih --</option>')
@@ -528,7 +773,7 @@
                             if (response && response.length > 0) {
                                 response.forEach(function(item) {
                                     // d2Select.append('<option value="'+item.D2+'">'+item.KB+' | '+item.KET+'</option>');
-                                    d2Select.append('<option value="' + item.D2 +
+                                    d2Select.append('<option value="' + item.KB + '" data-keterangan="' + item.KET +
                                         '" data-kb="' + item.KB + '">' + item.KB +
                                         ' | ' + item.KET + '</option>');
                                 });
@@ -551,7 +796,10 @@
 
             // --- D2 → D3 ---
             $('#d2').change(function() {
-                let kb = $(this).val();
+                let kb = $(this).val();     // value dari d2
+                let ka = $('#d1').val();
+                let params = `${ka}${kb}`;
+                console.log('kb:' + params);
                 // Reset D3-D5 setiap D2 berubah
                 $('#d3, #d4, #d5')
                     .empty().append('<option value="">-- Pilih --</option>')
@@ -559,7 +807,7 @@
 
                 if (kb) {
                     $.ajax({
-                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d3/' + kb,
+                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d3/' + params,
                         type: 'GET',
                         dataType: 'json',
                         success: function(response) {
@@ -569,7 +817,7 @@
                             if (response && response.length > 0) {
                                 response.forEach(function(item) {
                                     // d3Select.append('<option value="'+item.D3+'">'+item.KC+' | '+item.KET+'</option>');
-                                    d3Select.append('<option value="' + item.D3 +
+                                    d3Select.append('<option value="' + item.KC + '" data-keterangan="' + item.KET +
                                         '" data-kc="' + item.KC + '">' + item.KC +
                                         ' | ' + item.KET + '</option>');
                                 });
@@ -589,6 +837,10 @@
             // --- D3 → D4 ---
             $('#d3').change(function() {
                 let kc = $(this).val();
+                let ka = $('#d1').val();
+                let kb = $('#d2').val();
+                let params = `${ka}${kb}${kc}`;
+                console.log('kc:' + params);
                 // Reset D4-D5 setiap D3 berubah
                 $('#d4, #d5')
                     .empty().append('<option value="">-- Pilih --</option>')
@@ -596,7 +848,7 @@
 
                 if (kc) {
                     $.ajax({
-                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d4/' + kc,
+                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d4/' + params,
                         type: 'GET',
                         dataType: 'json',
                         success: function(response) {
@@ -606,7 +858,7 @@
                             if (response && response.length > 0) {
                                 response.forEach(function(item) {
                                     // d4Select.append('<option value="'+item.D4+'">'+item.KD+' | '+item.KET+'</option>');
-                                    d4Select.append('<option value="' + item.D4 +
+                                    d4Select.append('<option value="' + item.KD + '" data-keterangan="' + item.KET +
                                         '" data-kd="' + item.KD + '">' + item.KD +
                                         ' | ' + item.KET + '</option>');
                                 });
@@ -626,6 +878,11 @@
             // --- D4 → D5 ---
             $('#d4').change(function() {
                 let kd = $(this).val();
+                let ka = $('#d1').val();
+                let kb = $('#d2').val();
+                let kc = $('#d3').val();
+                let params = `${ka}${kb}${kc}${kd}`;
+                console.log('kd:' + params);
                 // Reset D5 setiap D4 berubah
                 $('#d5')
                     .empty().append('<option value="">-- Pilih Turunan Sub Kategori --</option>')
@@ -633,7 +890,7 @@
 
                 if (kd) {
                     $.ajax({
-                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d5/' + kd,
+                        url: '/master_barang_foxpro/public/index.php/api_dropdown_d5/' + params,
                         type: 'GET',
                         dataType: 'json',
                         success: function(response) {
@@ -644,7 +901,7 @@
                             if (response && response.length > 0) {
                                 response.forEach(function(item) {
                                     // d5Select.append('<option value="'+item.D5+'">'+item.KE+' | '+item.KET+'</option>');
-                                    d5Select.append('<option value="' + item.D5 +
+                                    d5Select.append('<option value="' + item.KE + '" data-keterangan="' + item.KET +
                                         '" data-ke="' + item.KE + '">' + item.KE +
                                         ' | ' + item.KET + '</option>');
                                 });
