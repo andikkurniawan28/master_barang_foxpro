@@ -1,49 +1,32 @@
 @extends('template')
 
+@section('tambah_barang')
+    {{ 'active' }}
+@endsection
+
 @section('content')
     <div class="container-fluid">
-        <h1 class="h3 mb-1"><strong>Perbarui Data Barang</strong></h1>
+        <h1 class="h3 mb-1"><strong>Tambah Data Barang</strong></h1>
         <div class="card shadow-sm p-4">
-            <form id="formMasterBarang" action="{{ route('perbarui_barang.process', $id) }}" method="POST">
+            <form id="formMasterBarang" action="{{ route('tambah_barang.process') }}" method="POST">
                 @csrf
-                <input type="hidden" name="ID" value="{{ $id }}">
 
                 <div class="row">
 
-                    <!-- DATA LAMA -->
-                    <div class="col-md-12">
-                        <h5 class="fw-bold mt-0 mb-2">Data Lama</h5>
-
-                        <h6 class="fw-bold text-primary mb-1">
-                            Kode Barang Lama:
-                            <span class="text-dark">{{ $barang->DEFAULT_CO }}</span>
-                        </h6>
-
-                        <h6 class="fw-bold text-primary mb-1">
-                            Nama Barang Lama:
-                            <span class="text-dark">{{ $barang->NAMA }}</span>
-                        </h6>
-
-                        <small class="text-secondary d-block mb-2">
-                            Diskripsi Barang Lama:
-                            <span class="text-dark">{{ $barang->DISKRIPSI }}</span>
-                        </small>
-                    </div>
-
                     <!-- DATA BARU -->
-                    <div class="col-md-12 mt-3">
+                    <div class="col-md-12">
                         <h5 class="fw-bold mb-2">Data Baru</h5>
 
                         <h6 class="fw-bold text-primary mb-1">
                             Kode Barang Baru:
-                            <span id="kodeBarangResult" class="text-dark">{{ $barang->KD_BRG }}</span>
-                            <input type="hidden" name="KD_BRG" id="kode_barang_hasil" value="{{ $barang->KD_BRG ?? "00000" }}">
+                            <span id="kodeBarangResult" class="text-dark">000000000000</span>
+                            <input type="hidden" name="KD_BRG" id="kode_barang_hasil" value="{{ '00000' }}">
                         </h6>
 
                         <small class="text-secondary d-block mb-2">
                             Diskripsi Barang Baru:
-                            <span id="deskripsiBarangResult" class="text-dark">{{ $barang->NM_BRG }}</span>
-                            <input type="hidden" name="NM_BRG" id="deskripsi_barang_hasil_baru" value="{{ $barang->NM_BRG }}">
+                            <span id="deskripsiBarangResult" class="text-dark"></span>
+                            <input type="hidden" name="NM_BRG" id="deskripsi_barang_hasil_baru" value="">
                         </small>
 
                         <!-- Famili -->
@@ -56,8 +39,7 @@
                                 <select name="D1" id="d1" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Kelompok Utama --</option>
                                     @foreach ($ka_data as $ka)
-                                        <option value="{{ $ka->KA }}" data-ka="{{ $ka->KA }}" data-keterangan="{{ $ka->KET }}"
-                                            {{ $barang->D1 == $ka->KA ? 'selected' : '' }}>
+                                        <option value="{{ $ka->KA }}" data-ka="{{ $ka->KA }}">
                                             {{ $ka->KA }} | {{ $ka->KET }}
                                         </option>
                                     @endforeach
@@ -71,12 +53,6 @@
                             <div class="col-md-5">
                                 <select name="D2" id="d2" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Sub Kelompok Utama --</option>
-                                    @foreach ($kb_data as $kb)
-                                        <option value="{{ $kb->KB }}" data-kb="{{ $kb->KB }}" data-keterangan="{{ $kb->KET }}"
-                                            {{ ($barang->D2 == $kb->KB && $barang->D1 == $kb->D2) ? 'selected' : '' }}>
-                                            {{ $kb->KB }} | {{ $kb->KET }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -95,12 +71,6 @@
                             <div class="col-md-5">
                                 <select name="D3" id="d3" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Kategori --</option>
-                                    @foreach ($kc_data as $kc)
-                                        <option value="{{ $kc->KC }}" data-kc="{{ $kc->KC }}" data-keterangan="{{ $kc->KET }}"
-                                            {{ (($barang->D3 == $kc->KC) && ($d1sampaid2 == $kc->D3)) ? 'selected' : '' }}>
-                                            {{ $kc->KC }} | {{ $kc->KET }} | {{ $kc->D3 }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -119,12 +89,6 @@
                             <div class="col-md-5">
                                 <select name="D4" id="d4" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Sub Kategori --</option>
-                                    @foreach ($kd_data as $kd)
-                                        <option value="{{ $kd->KD }}" data-kd="{{ $kd->KD }}" data-keterangan="{{ $kd->KET }}"
-                                            {{ (($barang->D4 == $kd->KD) && ($d1sampaid3 == $kd->D4)) ? 'selected' : '' }}>
-                                            {{ $kd->KD }} | {{ $kd->KET }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -143,12 +107,6 @@
                             <div class="col-md-5">
                                 <select name="D5" id="d5" class="form-select form-select-sm select2">
                                     <option value="">-- Pilih Turunan Sub Kategori --</option>
-                                    @foreach ($ke_data as $ke)
-                                        <option value="{{ $ke->KE }}" data-ke="{{ $ke->KE }}" data-keterangan="{{ $ke->KET }}"
-                                            {{ (($barang->D5 == $ke->KE) && ($d1sampaid4 == $ke->D5)) ? 'selected' : '' }}>
-                                            {{ $ke->KE }} | {{ $ke->KET }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
@@ -172,8 +130,9 @@
                                 <label class="fw-semibold mb-0">Nama Barang</label>
                             </div>
                             <div class="col-md-9">
-                                <input type="text" class="form-control" name="NAMA_BARU" id="NAMA_BARU"
-                                    value="{{ empty(trim($barang->NAMA_BARU)) ? $barang->NAMA : $barang->NAMA_BARU }}" placeholder="Masukkan nama barang...">
+                                {{-- <input type="text" class="form-control" name="NAMA_BARU" id="NAMA_BARU"
+                                    value="" placeholder="Masukkan nama barang..."> --}}
+                                <textarea class="form-control" name="NAMA_BARU" id="NAMA_BARU" placeholder="Masukkan nama barang..."></textarea>
                             </div>
                         </div>
 
@@ -184,7 +143,7 @@
                             </div>
                             <div class="col-md-9">
                                 <input type="text" class="form-control" name="NM_ALIAS" id="NM_ALIAS"
-                                    placeholder="Masukkan istilah lapangan..." value="{{ $barang->NM_ALIAS }}">
+                                    placeholder="Masukkan istilah lapangan..." value="">
                             </div>
                         </div>
 
@@ -194,7 +153,7 @@
                                 <label class="fw-semibold mb-0">Diskripsi</label>
                             </div>
                             <div class="col-md-9">
-                                <textarea class="form-control" id="DISKRIPSI_BARU" name="DISKRIPSI_BARU">{{ $barang->DISKRIPSI_BARU ?? $barang->DISKRIPSI }}</textarea>
+                                <textarea class="form-control" id="DISKRIPSI_BARU" name="DISKRIPSI_BARU"></textarea>
                             </div>
                         </div>
 
@@ -204,17 +163,10 @@
                             <div class="col-md-5">
                                 <select class="form-select form-select-sm select2" name="D6" id="d6">
                                     <option value="">-- Pilih atau ketik baru --</option>
-                                    @foreach ($d6_data as $d6)
-                                        <option value="{{ $d6->D6 }}" data-text="{{ $d6->KET }}"
-                                            {{ ($barang->D6 == $d6->D6 && $barang->K6 == $d6->KET) ? 'selected' : '' }}>
-                                            {{ $d6->D6 }} | {{ $d6->KET }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" id="d6_text"
-                                    placeholder="Input baru...">
+                                <input type="text" class="form-control" id="d6_text" placeholder="Input baru...">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-success btn-sm w-100" id="simpanD6">
@@ -229,17 +181,10 @@
                             <div class="col-md-5">
                                 <select class="form-select form-select-sm select2" name="D8" id="d8">
                                     <option value="">-- Pilih atau ketik baru --</option>
-                                    @foreach ($d8_data as $d8)
-                                        <option value="{{ $d8->D8 }}" data-text="{{ $d8->KET }}"
-                                            {{ ($barang->D8 == $d8->D8 && $barang->K8 == $d8->KET) ? 'selected' : '' }}>
-                                            {{ $d8->D8 }} | {{ $d8->KET }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" id="d8_text"
-                                    placeholder="Input baru...">
+                                <input type="text" class="form-control" id="d8_text" placeholder="Input baru...">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-success btn-sm w-100" id="simpanD8">
@@ -254,17 +199,10 @@
                             <div class="col-md-5">
                                 <select class="form-select form-select-sm select2" name="D10" id="d10">
                                     <option value="">-- Pilih atau ketik baru --</option>
-                                    @foreach ($d10_data as $d10)
-                                        <option value="{{ $d10->D10 }}" data-text="{{ $d10->KET }}"
-                                            {{ ($barang->D10 == $d10->D10 && $barang->K10 == $d10->KET) ? 'selected' : '' }}>
-                                            {{ $d10->D10 }} | {{ $d10->KET }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" id="d10_text"
-                                    placeholder="Input baru...">
+                                <input type="text" class="form-control" id="d10_text" placeholder="Input baru...">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-success btn-sm w-100" id="simpanD10">
@@ -279,17 +217,10 @@
                             <div class="col-md-5">
                                 <select class="form-select form-select-sm select2" name="D12" id="d12">
                                     <option value="">-- Pilih atau ketik baru --</option>
-                                    @foreach ($d12_data as $d12)
-                                        <option value="{{ $d12->D12 }}" data-text="{{ $d12->KET }}"
-                                            {{ ($barang->D12 == $d12->D12 && $barang->K12 == $d12->KET) ? 'selected' : '' }}>
-                                            {{ $d12->D12 }} | {{ $d12->KET }}
-                                        </option>
-                                    @endforeach
                                 </select>
                             </div>
                             <div class="col-md-2">
-                                <input type="text" class="form-control" id="d12_text"
-                                    placeholder="Input baru...">
+                                <input type="text" class="form-control" id="d12_text" placeholder="Input baru...">
                             </div>
                             <div class="col-md-2">
                                 <button type="button" class="btn btn-success btn-sm w-100" id="simpanD12">

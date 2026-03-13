@@ -16,6 +16,8 @@ class TambahBarangController extends Controller
     public function process(Request $request)
     {
 
+        // return $request;
+
         // 1. Cek apakah KD_BRG sudah digunakan oleh record lain
         $cek = DB::table('barang_asli')
             ->where('KD_BRG', $request->KD_BRG)
@@ -27,14 +29,14 @@ class TambahBarangController extends Controller
         }
 
         // 2. Buat ID
-        $id = $this->generateNextBarangId();
+        // $id = $this->generateNextBarangId();
 
         // Ambil data KA berdasarkan D1, hanya 1 row
-        $ka = DB::table('ka')->where('D1', $request->D1)->get()->last();
-        $kb = DB::table('kb')->where('D2', $request->D2)->get()->last();
-        $kc = DB::table('kc')->where('D3', $request->D3)->get()->last();
-        $kd = DB::table('kd')->where('D4', $request->D4)->get()->last();
-        $ke = DB::table('ke')->where('D5', $request->D5)->get()->last();
+        $ka = DB::table('ka')->where('KA', $request->D1)->get()->last();
+        $kb = DB::table('kb')->where('KB', $request->D2)->where('D2', substr($request->KD_BRG, 0, 1))->get()->last();
+        $kc = DB::table('kc')->where('KC', $request->D3)->where('D3', substr($request->KD_BRG, 0, 2))->get()->last();
+        $kd = DB::table('kd')->where('KD', $request->D4)->where('D4', substr($request->KD_BRG, 0, 3))->get()->last();
+        $ke = DB::table('ke')->where('KE', $request->D5)->where('D5', substr($request->KD_BRG, 0, 4))->get()->last();
 
         $d1sampaid5 = substr($request->KD_BRG, 0, 5);
 
@@ -44,7 +46,7 @@ class TambahBarangController extends Controller
         $d12 = DB::table('d12')->where('D12', $request->D12)->where('D5', $d1sampaid5)->get()->last();
 
         $request->request->add([
-            'ID' => $id,
+            // 'ID' => $id,
             'D1_true' => $ka->KA ?? null,
             'K1_true' => $ka->KET ?? null,
             'D2_true' => $kb->KB ?? null,
@@ -61,6 +63,8 @@ class TambahBarangController extends Controller
             'K10' => $d10->KET ?? null,
             'K12' => $d12->KET ?? null,
         ]);
+
+        // return $request;
 
         $simpan = DB::table('barang_asli')
             ->insert([
@@ -80,14 +84,14 @@ class TambahBarangController extends Controller
                 'K4' => $request->K4_true,
                 'D5' => $request->D5_true,
                 'K5' => $request->K5_true,
-                'D6' => $request->D6,
-                'K6' => $request->K6,
-                'D8' => $request->D8,
-                'K8' => $request->K8,
-                'D10' => $request->D10,
-                'K10' => $request->K10,
-                'D12' => $request->D12,
-                'K12' => $request->K12,
+                'D6' => $request->D6 ?? '00',
+                'K6' => $request->K6 ?? null,
+                'D8' => $request->D8 ?? '00',
+                'K8' => $request->K8 ?? null,
+                'D10' => $request->D10 ?? '00',
+                'K10' => $request->K10 ?? null,
+                'D12' => $request->D12 ?? '00',
+                'K12' => $request->K12 ?? null,
             ]);
 
         return redirect()->route('barang_sudah_diperbarui')->with('success', "Data berhasil ditambah");

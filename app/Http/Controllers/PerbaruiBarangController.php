@@ -14,6 +14,9 @@ class PerbaruiBarangController extends Controller
     {
         $barang = DB::table('barang_asli')->where('ID', $id)->get()->last();
 
+        $d1sampaid2 = substr($barang->KD_BRG, 0, 2) ?? '00';
+        $d1sampaid3 = substr($barang->KD_BRG, 0, 3) ?? '000';
+        $d1sampaid4 = substr($barang->KD_BRG, 0, 4) ?? '0000';
         $d1sampaid5 = substr($barang->KD_BRG, 0, 5) ?? '00000';
 
         $ka_data = DB::table('ka')->get();
@@ -28,41 +31,44 @@ class PerbaruiBarangController extends Controller
         $kb_data = [];
         if ($d1_prefix) {
             $kb_data = DB::table('kb')
-                ->where('D2', 'like', $d1_prefix . '%')
+                ->where('D2', $d1_prefix)
                 ->get();
         }
-
 
         // ================
         // D2 → D3 (KB → KC)
         // ================
         $d2_prefix = DB::table('kb')
             ->where('KB', $barang->D2)
-            ->where('KET', $barang->K2)
+            // ->where('KET', $barang->K2)
+            ->where('D2', $d1_prefix)
             ->value('D2');
 
         $kc_data = [];
         if ($d2_prefix) {
             $kc_data = DB::table('kc')
-                ->where('D3', 'like', $d2_prefix . '%')
+                ->where('D3', $d1sampaid2)
                 ->get();
         }
 
+        // return $kc_data;
 
         // ================
         // D3 → D4 (KC → KD)
         // ================
         $d3_prefix = DB::table('kc')
             ->where('KC', $barang->D3)
-            ->where('KET', $barang->K3)
+            ->where('D3', $d1sampaid2)
             ->value('D3');
 
         $kd_data = [];
         if ($d3_prefix) {
             $kd_data = DB::table('kd')
-                ->where('D4', 'like', $d3_prefix . '%')
+                ->where('D4', $d1sampaid3)
                 ->get();
         }
+
+        // return $kd_data;
 
 
         // ================
@@ -70,13 +76,13 @@ class PerbaruiBarangController extends Controller
         // ================
         $d4_prefix = DB::table('kd')
             ->where('KD', $barang->D4)
-            ->where('KET', $barang->K4)
+            ->where('D4', $d1sampaid3)
             ->value('D4');
 
         $ke_data = [];
         if ($d4_prefix) {
             $ke_data = DB::table('ke')
-                ->where('D5', 'like', $d4_prefix . '%')
+                ->where('D5', $d1sampaid4)
                 ->get();
         }
 
@@ -97,6 +103,9 @@ class PerbaruiBarangController extends Controller
             'd10_data',
             'd12_data',
             'id',
+            'd1sampaid4',
+            'd1sampaid3',
+            'd1sampaid2',
             'd1sampaid5',
         ));
     }
@@ -114,11 +123,11 @@ class PerbaruiBarangController extends Controller
         }
 
         // Ambil data KA berdasarkan D1, hanya 1 row
-        $ka = DB::table('ka')->where('D1', $request->D1)->get()->last();
-        $kb = DB::table('kb')->where('D2', $request->D2)->get()->last();
-        $kc = DB::table('kc')->where('D3', $request->D3)->get()->last();
-        $kd = DB::table('kd')->where('D4', $request->D4)->get()->last();
-        $ke = DB::table('ke')->where('D5', $request->D5)->get()->last();
+        $ka = DB::table('ka')->where('KA', $request->D1)->get()->last();
+        $kb = DB::table('kb')->where('KB', $request->D2)->where('D2', substr($request->KD_BRG, 0, 1))->get()->last();
+        $kc = DB::table('kc')->where('KC', $request->D3)->where('D3', substr($request->KD_BRG, 0, 2))->get()->last();
+        $kd = DB::table('kd')->where('KD', $request->D4)->where('D4', substr($request->KD_BRG, 0, 3))->get()->last();
+        $ke = DB::table('ke')->where('KE', $request->D5)->where('D5', substr($request->KD_BRG, 0, 4))->get()->last();
 
         $d1sampaid5 = substr($request->KD_BRG, 0, 5);
 

@@ -22,7 +22,7 @@
                         <tr>
                             <th>#</th>
                             <th>KODE_LAMA</th>
-                            <th>NAMA_LAMA</th>
+                            <th>NAMA</th>
                             <th>DISKRIPSI</th>
                             <th>KODE_BARU</th>
                             {{-- <th>NAMA_BARU</th> --}}
@@ -47,8 +47,8 @@
             columns: [
                 { data: 'ID', name: 'ID' },
                 { data: 'KDBRG', name: 'KDBRG' },
-                { data: 'NAMA', name: 'NAMA' },
-                { data: 'DISKRIPSI', name: 'DISKRIPSI' },
+                { data: 'NAMA_BARU', name: 'NAMA_BARU' },
+                { data: 'DISKRIPSI_BARU', name: 'DISKRIPSI_BARU' },
                 { data: 'KD_BRG', name: 'KD_BRG' },
                 // { data: 'NAMA_BARU', name: 'NAMA_BARU' },
                 { data: 'action', name: 'action', orderable: false, searchable: false }

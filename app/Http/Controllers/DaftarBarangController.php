@@ -14,7 +14,7 @@ class DaftarBarangController extends Controller
     public function __invoke(Request $request)
     {
         if ($request->ajax()) {
-            $data = DB::table(DB::raw('(SELECT DISKRIPSI, ID, NAMA, KDBRG, KD_BRG, NAMA_BARU, KET FROM barang_asli) AS b'));
+            $data = DB::table(DB::raw('(SELECT DISKRIPSI, ID, NAMA, KDBRG, KD_BRG, NAMA_BARU, DISKRIPSI_BARU, KET FROM barang_asli) AS b'));
             return DataTables::of($data)
                 ->addIndexColumn()
                 ->addColumn('action', function ($row) {
