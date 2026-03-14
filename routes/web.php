@@ -35,11 +35,16 @@ Route::get('/api_dropdown_d2/{ka}', ApiDropdownD2Controller::class)->name('api_d
 Route::get('/api_dropdown_d3/{kb}', ApiDropdownD3Controller::class)->name('api_dropdown_d3');
 Route::get('/api_dropdown_d4/{kb}', ApiDropdownD4Controller::class)->name('api_dropdown_d4');
 Route::get('/api_dropdown_d5/{kb}', ApiDropdownD5Controller::class)->name('api_dropdown_d5');
-Route::get('/api_dropdown_d6/{d5}', ApiDropdownD6Controller::class)->name('api_dropdown_d6');
-Route::post('/api_simpan_spesifikasi/d6', [ApiSimpanSpesifikasiController::class, 'simpanD6'])->name('api_simpan_spesifikasi.d6');
+Route::get('/api_dropdown_d6/{d5}', ApiDropdownD6Controller::class)->name('api_dropdown_d6');Route::post('/api_simpan_spesifikasi/d6', [ApiSimpanSpesifikasiController::class, 'simpanD6'])->name('api_simpan_spesifikasi.d6');
 Route::post('/api_simpan_spesifikasi/d8', [ApiSimpanSpesifikasiController::class, 'simpanD8'])->name('api_simpan_spesifikasi.d8');
 Route::post('/api_simpan_spesifikasi/d10', [ApiSimpanSpesifikasiController::class, 'simpanD10'])->name('api_simpan_spesifikasi.d10');
 Route::post('/api_simpan_spesifikasi/d12', [ApiSimpanSpesifikasiController::class, 'simpanD12'])->name('api_simpan_spesifikasi.d12');
+Route::post('/api_simpan_spesifikasi/d14', [ApiSimpanSpesifikasiController::class, 'simpanD14'])->name('api_simpan_spesifikasi.d14');
+Route::post('/api_simpan_spesifikasi/d16', [ApiSimpanSpesifikasiController::class, 'simpanD16'])->name('api_simpan_spesifikasi.d16');
+Route::post('/api_simpan_spesifikasi/d18', [ApiSimpanSpesifikasiController::class, 'simpanD18'])->name('api_simpan_spesifikasi.d18');
+Route::post('/api_simpan_spesifikasi/d20', [ApiSimpanSpesifikasiController::class, 'simpanD20'])->name('api_simpan_spesifikasi.d20');
+Route::post('/api_simpan_spesifikasi/d22', [ApiSimpanSpesifikasiController::class, 'simpanD22'])->name('api_simpan_spesifikasi.d22');
+Route::post('/api_simpan_spesifikasi/d24', [ApiSimpanSpesifikasiController::class, 'simpanD24'])->name('api_simpan_spesifikasi.d24');
 Route::get('/test', TestController::class)->name('test');
 Route::get('/tambah_barang', [TambahBarangController::class, 'index'])->name('tambah_barang.index');
 Route::post('/tambah_barang', [TambahBarangController::class, 'process'])->name('tambah_barang.process');

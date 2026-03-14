@@ -161,15 +161,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 6-7</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d6_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D6" id="d6_dropdown">
+                                <select class="form-select form-select-sm select2" name="D6" id="d6">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d6_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d6_value" name="K6" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d6_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD6">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -177,15 +182,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 8-9</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d8_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D8" id="d8_dropdown">
+                                <select class="form-select form-select-sm select2" name="D8" id="d8">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d8_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d8_value" name="K8" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d8_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD8">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -193,15 +203,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 10-11</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d10_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D10" id="d10_dropdown">
+                                <select class="form-select form-select-sm select2" name="D10" id="d10">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d10_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d10_value" name="K10" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d10_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD10">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -209,15 +224,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 12-13</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d12_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D12" id="d12_dropdown">
+                                <select class="form-select form-select-sm select2" name="D12" id="d12">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d12_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d12_value" name="K12" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d12_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD12">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -225,15 +245,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 14-15</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d14_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D14" id="d14_dropdown">
+                                <select class="form-select form-select-sm select2" name="D14" id="d14">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d14_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d14_value" name="K14" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d14_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD14">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -241,15 +266,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 16-17</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d16_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D16" id="d16_dropdown">
+                                <select class="form-select form-select-sm select2" name="D16" id="d16">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d16_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d16_value" name="K16" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d16_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD16">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -257,15 +287,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 18-19</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d18_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D18" id="d18_dropdown">
+                                <select class="form-select form-select-sm select2" name="D18" id="d18">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d18_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d18_value" name="K18" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d18_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD18">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -273,15 +308,20 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 20-21</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d20_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D20" id="d20_dropdown">
+                                <select class="form-select form-select-sm select2" name="D20" id="d20">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d20_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d20_value" name="K20" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d20_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD20">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -289,31 +329,41 @@
                         <div class="row mb-1 align-items-center">
                             <div class="col-md-3">Digit 22-23</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d22_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D22" id="d22_dropdown">
+                                <select class="form-select form-select-sm select2" name="D22" id="d22">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d22_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d22_value" name="K22" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d22_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD22">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
                         <!-- D24 -->
                         <div class="row mb-1 align-items-center">
-                            <div class="col-md-3">Digit 24</div>
+                            <div class="col-md-3">Digit 24-25</div>
                             <div class="col-md-3">
-                                <input type="text" class="form-control" id="d24_keterangan" placeholder="Masukkan keterangan...">
-                            </div>
-                            <div class="col-md-3">
-                                <select class="form-select form-select-sm select2" name="D24" id="d24_dropdown">
+                                <select class="form-select form-select-sm select2" name="D24" id="d24">
                                     <option value="">-- Pilih atau ketik baru --</option>
                                 </select>
                             </div>
-                            <div class="col-md-3">
-                                <input type="text" class="form-control" id="d24_value" placeholder="Masukkan nilai baru...">
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d24_value" name="K24" placeholder="Nilai......">
+                            </div>
+                            <div class="col-md-2">
+                                <input type="text" class="form-control" id="d24_text" placeholder="Masukkan keterangan...">
+                            </div>
+                            <div class="col-md-2">
+                                <button type="button" class="btn btn-success btn-sm w-100" id="simpanD24">
+                                    <i class="bi bi-save"></i> Simpan
+                                </button>
                             </div>
                         </div>
 
@@ -340,6 +390,7 @@
 @section('script')
     <script>
         $(document).ready(function() {
+
             @include('button_simpan_samping_dropdown')
             @include('reset_semua_inputan')
             @include('generate_kode_barang')

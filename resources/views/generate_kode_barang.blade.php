@@ -6,10 +6,17 @@
         let d3 = $('#d3 option:selected').data('kc')?.toString() || '0';
         let d4 = $('#d4 option:selected').data('kd')?.toString() || '0';
         let d5 = $('#d5 option:selected').data('ke')?.toString() || '0';
+
         let d6 = $('#d6').val() || '00';
         let d8 = $('#d8').val() || '00';
         let d10 = $('#d10').val() || '00';
-        let d12 = $('#d12').val() || '0';
+        let d12 = $('#d12').val() || '00';
+        let d14 = $('#d14').val() || '00';
+        let d16 = $('#d16').val() || '00';
+        let d18 = $('#d18').val() || '00';
+        let d20 = $('#d20').val() || '00';
+        let d22 = $('#d22').val() || '00';
+        let d24 = $('#d24').val() || '00';
 
         let d2_inner = $('#d2 option:selected').data('keterangan')?.toString() || '-';
         let d3_inner = $('#d3 option:selected').data('keterangan')?.toString() || '-';
@@ -28,11 +35,16 @@
         }
 
         // gabungkan kode barang
-        let kode = (d1 + d2 + d3 + d4 + d5).padEnd(5, '0') +
-            (d6).padEnd(2, '0') +
+        let kode = (d1 + d2 + d3 + d4 + d5).padEnd(5, '0') +(d6).padEnd(2, '0') +
             (d8).padEnd(2, '0') +
             (d10).padEnd(2, '0') +
-            (d12).padEnd(1, '0');
+            (d12).padEnd(2, '0') +
+            (d14).padEnd(2, '0') +
+            (d16).padEnd(2, '0') +
+            (d18).padEnd(2, '0') +
+            (d20).padEnd(2, '0') +
+            (d22).padEnd(2, '0') +
+            (d24).padEnd(2, '0');
 
         $('#kodeBarangResult').text(kode);
         $('#kode_barang_hasil').val(kode);
@@ -46,6 +58,13 @@
         let d6_text = $('#d6 option:selected').data('text') || '';
         let d8_text = $('#d8 option:selected').data('text') || '';
         let d10_text = $('#d10 option:selected').data('text') || '';
+        let d12_text = $('#d12 option:selected').data('text') || '';
+        let d14_text = $('#d14 option:selected').data('text') || '';
+        let d16_text = $('#d16 option:selected').data('text') || '';
+        let d18_text = $('#d18 option:selected').data('text') || '';
+        let d20_text = $('#d20 option:selected').data('text') || '';
+        let d22_text = $('#d22 option:selected').data('text') || '';
+        let d24_text = $('#d24 option:selected').data('text') || '';
 
         // Gabungkan menjadi deskripsi baru
         let deskripsi_baru = [nama_baru, d6_text, d8_text, d10_text]

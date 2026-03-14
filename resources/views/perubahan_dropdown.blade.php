@@ -168,6 +168,6 @@ $('#d4').change(function () {
 });
 
 // --- Dropdown D1 → D12 ---
-$('#d1, #d2, #d3, #d4, #d5, #d6, #d8, #d10, #d12, #NAMA_BARU, #DISKRIPSI_BARU').change(function () {
+$('#d1, #d2, #d3, #d4, #d5, #d6, #d8, #d10, #d12, #d14, #d16, #d18, #d20, #d22, #d24, #NAMA_BARU, #DISKRIPSI_BARU').change(function () {
     generateKodeBarang();
 });

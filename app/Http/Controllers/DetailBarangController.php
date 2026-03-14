@@ -56,6 +56,8 @@ class DetailBarangController extends Controller
 
         // return substr($barang->KD_BRG,0,5);
 
+        // return $barang;
+
         return view('detail_barang', compact('barang', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k8', 'k10'));
     }
 }

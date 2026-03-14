@@ -141,45 +141,106 @@
                         </div>
                     </div>
 
-
                     {{-- D6 --}}
                     <div class="row mb-1 align-items-center">
-                        <div class="col-md-3">Ukuran / Warna / Tipe / Seri</div>
+                        <div class="col-md-3">Digit 6-7</div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="{{ $barang->D6 }} | {{ $k6->KET ?? '-' }}"
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D6 }} | {{ $barang->K6 ?? ($k6->KET ?? '-') }}"
                                 readonly>
                         </div>
                     </div>
-
 
                     {{-- D8 --}}
                     <div class="row mb-1 align-items-center">
-                        <div class="col-md-3">Volume / Kapasitas / Daya</div>
+                        <div class="col-md-3">Digit 8-9</div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="{{ $barang->D8 }} | {{ $k8->KET ?? '-' }}"
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D8 }} | {{ $barang->K8 ?? ($k8->KET ?? '-') }}"
                                 readonly>
                         </div>
                     </div>
-
 
                     {{-- D10 --}}
                     <div class="row mb-1 align-items-center">
-                        <div class="col-md-3">Merk / Material</div>
+                        <div class="col-md-3">Digit 10-11</div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="{{ $barang->D10 }} | {{ $k10->KET ?? '-' }}"
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D10 }} | {{ $barang->K10 ?? ($k10->KET ?? '-') }}"
                                 readonly>
                         </div>
                     </div>
 
-
                     {{-- D12 --}}
                     <div class="row mb-1 align-items-center">
-                        <div class="col-md-3">Keterangan</div>
+                        <div class="col-md-3">Digit 12-13</div>
                         <div class="col-md-9">
-                            <input type="text" class="form-control" value="{{ $barang->D12 . " | " ?? '' }}" readonly>
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D12 }} | {{ $barang->K12 ?? ($k12->KET ?? '-') }}"
+                                readonly>
                         </div>
                     </div>
 
+                    {{-- D14 --}}
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-3">Digit 14-15</div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D14 }} | {{ $barang->K14 ?? ($k14->KET ?? '-') }}"
+                                readonly>
+                        </div>
+                    </div>
+
+                    {{-- D16 --}}
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-3">Digit 16-17</div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D16 }} | {{ $barang->K16 ?? ($k16->KET ?? '-') }}"
+                                readonly>
+                        </div>
+                    </div>
+
+                    {{-- D18 --}}
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-3">Digit 18-19</div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D18 }} | {{ $barang->K18 ?? ($k18->KET ?? '-') }}"
+                                readonly>
+                        </div>
+                    </div>
+
+                    {{-- D20 --}}
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-3">Digit 20-21</div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D20 }} | {{ $barang->K20 ?? ($k20->KET ?? '-') }}"
+                                readonly>
+                        </div>
+                    </div>
+
+                    {{-- D22 --}}
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-3">Digit 22-23</div>
+                        <div class="col-md-9">
+
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D22 }} | {{ $barang->K22 ?? ($k22->KET ?? '-') }}"
+                                readonly>
+                        </div>
+                    </div>
+
+                    {{-- D24 --}}
+                    <div class="row mb-1 align-items-center">
+                        <div class="col-md-3">Digit 24-25</div>
+                        <div class="col-md-9">
+                            <input type="text" class="form-control"
+                                value="{{ $barang->D24 }} | {{ $barang->K24 ?? ($k24->KET ?? '-') }}"
+                                readonly>
+                        </div>
+                    </div>
 
                 </div>
 

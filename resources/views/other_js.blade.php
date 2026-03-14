@@ -24,10 +24,23 @@ setInterval(function () {
         success: function (response) {
             if (!response) return;
 
+            {{-- updateSelect($('#d6'), response.d6, '-- Tidak ada data D6 --');
+            updateSelect($('#d8'), response.d8, '-- Tidak ada data D8 --');
+            updateSelect($('#d10'), response.d10, '-- Tidak ada data D10 --');
+            console.log('✅ D6, D8, D10 diperbarui.'); --}}
+
             updateSelect($('#d6'), response.d6, '-- Tidak ada data D6 --');
             updateSelect($('#d8'), response.d8, '-- Tidak ada data D8 --');
             updateSelect($('#d10'), response.d10, '-- Tidak ada data D10 --');
-            console.log('✅ D6, D8, D10 diperbarui.');
+            updateSelect($('#d12'), response.d12, '-- Tidak ada data D12 --');
+            updateSelect($('#d14'), response.d14, '-- Tidak ada data D14 --');
+            updateSelect($('#d16'), response.d16, '-- Tidak ada data D16 --');
+            updateSelect($('#d18'), response.d18, '-- Tidak ada data D18 --');
+            updateSelect($('#d20'), response.d20, '-- Tidak ada data D20 --');
+            updateSelect($('#d22'), response.d22, '-- Tidak ada data D22 --');
+            updateSelect($('#d24'), response.d24, '-- Tidak ada data D24 --');
+
+            console.log('✅ D6 s/d D24 diperbarui.');
         },
         error: function (xhr) {
             console.error('❌ Gagal ambil data:', xhr.responseText);
@@ -42,9 +55,10 @@ function updateSelect($el, data, emptyText) {
         $.each(data, function (i, item) {
             $el.append(
                 $('<option>', {
-                    value: item.D6 ?? item.D8 ?? item.D10 ??
+                    value: item.D6 ?? item.D8 ?? item.D10 ?? item.D12 ?? item.D14 ?? item.D16 ?? item.D18 ?? item.D20 ?? item.D22 ?? item.D24 ??
                         '', // ambil nilai yang tersedia
-                    text: (item.D6 ?? item.D8 ?? item.D10 ?? '') + ' | ' + (item.KET ??
+                    text: (item.D6 ?? item.D8 ?? item.D10 ?? item.D12 ?? item.D14 ?? item.D16 ?? item.D18 ?? item.D20 ?? item.D22 ?? item.D24 ??
+                        '') + ' | ' + (item.KET ??
                         ''), // hindari undefined
                     'data-text': item.KET ?? '',
                 })
@@ -56,3 +70,5 @@ function updateSelect($el, data, emptyText) {
     $el.val(selectedValue); // kembalikan pilihan user jika masih ada
     $el.trigger('change.select2');
 }
+
+

@@ -44,6 +44,12 @@ class TambahBarangController extends Controller
         $d8 = DB::table('d8')->where('D8', $request->D8)->where('D5', $d1sampaid5)->get()->last();
         $d10 = DB::table('d10')->where('D10', $request->D10)->where('D5', $d1sampaid5)->get()->last();
         $d12 = DB::table('d12')->where('D12', $request->D12)->where('D5', $d1sampaid5)->get()->last();
+        $d14 = DB::table('d14')->where('D14', $request->D14)->where('D5', $d1sampaid5)->get()->last();
+        $d16 = DB::table('d16')->where('D16', $request->D16)->where('D5', $d1sampaid5)->get()->last();
+        $d18 = DB::table('d18')->where('D18', $request->D18)->where('D5', $d1sampaid5)->get()->last();
+        $d20 = DB::table('d20')->where('D20', $request->D20)->where('D5', $d1sampaid5)->get()->last();
+        $d22 = DB::table('d22')->where('D22', $request->D22)->where('D5', $d1sampaid5)->get()->last();
+        $d24 = DB::table('d24')->where('D24', $request->D24)->where('D5', $d1sampaid5)->get()->last();
 
         $request->request->add([
             // 'ID' => $id,
@@ -58,10 +64,16 @@ class TambahBarangController extends Controller
             'D5_true' => $ke->KE ?? null,
             'K5_true' => $ke->KET ?? null,
             'd1sampaid5' => $d1sampaid5,
-            'K6' => $d6->KET ?? null,
-            'K8' => $d8->KET ?? null,
-            'K10' => $d10->KET ?? null,
-            'K12' => $d12->KET ?? null,
+            'K6' => ($d6->KET ?? '') . ' - ' . ($request->K6 ?? ''),
+            'K8' => ($d8->KET ?? '') . ' - ' . ($request->K8 ?? ''),
+            'K10' => ($d10->KET ?? '') . ' - ' . ($request->K10 ?? ''),
+            'K12' => ($d12->KET ?? '') . ' - ' . ($request->K12 ?? ''),
+            'K14' => ($d14->KET ?? '') . ' - ' . ($request->K14 ?? ''),
+            'K16' => ($d16->KET ?? '') . ' - ' . ($request->K16 ?? ''),
+            'K18' => ($d18->KET ?? '') . ' - ' . ($request->K18 ?? ''),
+            'K20' => ($d20->KET ?? '') . ' - ' . ($request->K20 ?? ''),
+            'K22' => ($d22->KET ?? '') . ' - ' . ($request->K22 ?? ''),
+            'K24' => ($d24->KET ?? '') . ' - ' . ($request->K24 ?? ''),
         ]);
 
         // return $request;
@@ -92,6 +104,18 @@ class TambahBarangController extends Controller
                 'K10' => $request->K10 ?? null,
                 'D12' => $request->D12 ?? '00',
                 'K12' => $request->K12 ?? null,
+                'D14' => $request->D14 ?? '00',
+                'K14' => $request->K14 ?? null,
+                'D16' => $request->D16 ?? '00',
+                'K16' => $request->K16 ?? null,
+                'D18' => $request->D18 ?? '00',
+                'K18' => $request->K18 ?? null,
+                'D20' => $request->D20 ?? '00',
+                'K20' => $request->K20 ?? null,
+                'D22' => $request->D22 ?? '00',
+                'K22' => $request->K22 ?? null,
+                'D24' => $request->D24 ?? '00',
+                'K24' => $request->K24 ?? null,
             ]);
 
         return redirect()->route('barang_sudah_diperbarui')->with('success', "Data berhasil ditambah");
