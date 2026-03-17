@@ -9,16 +9,86 @@ class ApiDropdownD6Controller extends Controller
     public function __invoke($d5)
     {
         // Ambil data dari tiga tabel
-        $d6 = DB::table('d6')->where('D5', $d5)->get(['D6', 'KET']);
-        $d8 = DB::table('d8')->where('D5', $d5)->get(['D8', 'KET']);
-        $d10 = DB::table('d10')->where('D5', $d5)->get(['D10', 'KET']);
-        $d12 = DB::table('d12')->where('D5', $d5)->get(['D12', 'KET']);
-        $d14 = DB::table('d14')->where('D5', $d5)->get(['D14', 'KET']);
-        $d16 = DB::table('d16')->where('D5', $d5)->get(['D16', 'KET']);
-        $d18 = DB::table('d18')->where('D5', $d5)->get(['D18', 'KET']);
-        $d20 = DB::table('d20')->where('D5', $d5)->get(['D20', 'KET']);
-        $d22 = DB::table('d22')->where('D5', $d5)->get(['D22', 'KET']);
-        $d24 = DB::table('d24')->where('D5', $d5)->get(['D24', 'KET']);
+        // $d6 = DB::table('d6')->where('D5', $d5)->get(['D6', 'KET', 'NILAI']);
+        // $d8 = DB::table('d8')->where('D5', $d5)->get(['D8', 'KET', 'NILAI']);
+        // $d10 = DB::table('d10')->where('D5', $d5)->get(['D10', 'KET', 'NILAI']);
+        // $d12 = DB::table('d12')->where('D5', $d5)->get(['D12', 'KET', 'NILAI']);
+        // $d14 = DB::table('d14')->where('D5', $d5)->get(['D14', 'KET', 'NILAI']);
+        // $d16 = DB::table('d16')->where('D5', $d5)->get(['D16', 'KET', 'NILAI']);
+        // $d18 = DB::table('d18')->where('D5', $d5)->get(['D18', 'KET', 'NILAI']);
+        // $d20 = DB::table('d20')->where('D5', $d5)->get(['D20', 'KET', 'NILAI']);
+        // $d22 = DB::table('d22')->where('D5', $d5)->get(['D22', 'KET', 'NILAI']);
+        // $d24 = DB::table('d24')->where('D5', $d5)->get(['D24', 'KET', 'NILAI']);
+
+        $d6 = DB::table('d6')
+            ->where('D5', $d5)
+            ->orderBy('D6')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d8 = DB::table('d8')
+            ->where('D5', $d5)
+            ->orderBy('D8')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d10 = DB::table('d10')
+            ->where('D5', $d5)
+            ->orderBy('D10')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d12 = DB::table('d12')
+            ->where('D5', $d5)
+            ->orderBy('D12')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d14 = DB::table('d14')
+            ->where('D5', $d5)
+            ->orderBy('D14')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d16 = DB::table('d16')
+            ->where('D5', $d5)
+            ->orderBy('D16')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d18 = DB::table('d18')
+            ->where('D5', $d5)
+            ->orderBy('D18')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d20 = DB::table('d20')
+            ->where('D5', $d5)
+            ->orderBy('D20')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d22 = DB::table('d22')
+            ->where('D5', $d5)
+            ->orderBy('D22')
+            ->get()
+            ->unique('KET')
+            ->values();
+
+        $d24 = DB::table('d24')
+            ->where('D5', $d5)
+            ->orderBy('D24')
+            ->get()
+            ->unique('KET')
+            ->values();
 
         // Gabungkan hasil jadi satu array respons
         $data = [

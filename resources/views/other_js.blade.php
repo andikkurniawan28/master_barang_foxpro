@@ -24,11 +24,6 @@ setInterval(function () {
         success: function (response) {
             if (!response) return;
 
-            {{-- updateSelect($('#d6'), response.d6, '-- Tidak ada data D6 --');
-            updateSelect($('#d8'), response.d8, '-- Tidak ada data D8 --');
-            updateSelect($('#d10'), response.d10, '-- Tidak ada data D10 --');
-            console.log('✅ D6, D8, D10 diperbarui.'); --}}
-
             updateSelect($('#d6'), response.d6, '-- Tidak ada data D6 --');
             updateSelect($('#d8'), response.d8, '-- Tidak ada data D8 --');
             updateSelect($('#d10'), response.d10, '-- Tidak ada data D10 --');
@@ -57,9 +52,7 @@ function updateSelect($el, data, emptyText) {
                 $('<option>', {
                     value: item.D6 ?? item.D8 ?? item.D10 ?? item.D12 ?? item.D14 ?? item.D16 ?? item.D18 ?? item.D20 ?? item.D22 ?? item.D24 ??
                         '', // ambil nilai yang tersedia
-                    text: (item.D6 ?? item.D8 ?? item.D10 ?? item.D12 ?? item.D14 ?? item.D16 ?? item.D18 ?? item.D20 ?? item.D22 ?? item.D24 ??
-                        '') + ' | ' + (item.KET ??
-                        ''), // hindari undefined
+                    text: (item.KET ?? ''),
                     'data-text': item.KET ?? '',
                 })
             );
@@ -69,6 +62,236 @@ function updateSelect($el, data, emptyText) {
     }
     $el.val(selectedValue); // kembalikan pilihan user jika masih ada
     $el.trigger('change.select2');
+}
+
+// Fungsi untuk D6
+function updateNilaiDropdownD6($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D6 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D8
+function updateNilaiDropdownD8($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D8 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D10
+function updateNilaiDropdownD10($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D10 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D12
+function updateNilaiDropdownD12($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D12 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D14
+function updateNilaiDropdownD14($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D14 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D16
+function updateNilaiDropdownD16($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D16 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D18
+function updateNilaiDropdownD18($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D18 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D20
+function updateNilaiDropdownD20($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D20 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D22
+function updateNilaiDropdownD22($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D22 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
+}
+
+// Fungsi untuk D24
+function updateNilaiDropdownD24($dSelect, $nilaiSelect, data, emptyText) {
+    let selectedNilai = $nilaiSelect.val();
+    $nilaiSelect.empty();
+
+    if (data && data.length > 0) {
+        $.each(data, function (i, item) {
+            $nilaiSelect.append(
+                $('<option>', {
+                    value: item.D24 ?? '',
+                    text: item.NILAI ?? '',
+                    'data-text': item.NILAI ?? '',
+                })
+            );
+        });
+    } else {
+        $nilaiSelect.append('<option value="">' + emptyText + '</option>');
+    }
+
+    $nilaiSelect.val(selectedNilai);
+    $nilaiSelect.trigger('change.select2');
 }
 
 

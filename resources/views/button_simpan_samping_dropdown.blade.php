@@ -1,12 +1,14 @@
 // --- Button Simpan D6 ---
 $('#simpanD6').click(function () {
     let keterangan = $('#d6_text').val(); // ambil teks input D6
+    let nilai = $('#d6_nilai_input').val() || '-'; // jika nilai kosong, beri default "-"
     let kodeHasil = $('#kode_barang_hasil').val() || '';
     let d5 = kodeHasil.substring(0, 5); // ambil 5 digit pertama sebagai D5
 
     console.log('📦 Data yang akan dikirim ke API:');
     console.log('➡️ D5:', d5);
     console.log('➡️ Keterangan:', keterangan);
+    console.log('➡️ Nilai:', nilai);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D6!');
@@ -22,21 +24,77 @@ $('#simpanD6').click(function () {
         url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d6',
         type: 'POST',
         data: {
-            _token: $('meta[name="csrf-token"]').attr(
-                'content'), // ← tambahkan CSRF di sini
+            _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D6:', response);
             alert('Data D6 berhasil disimpan! Kode berikutnya: ' + response.nextD6);
 
-            // Optional: langsung tambah ke dropdown D6
+            // Tambah ke dropdown D6
             $('#d6').append(
                 $('<option>', {
                     value: response.nextD6,
-                    text: response.nextD6 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D6:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D6.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D6 ---
+$('#simpanD6Nilai').click(function () {
+    let keterangan = $('#d6 option:selected').text();
+    let nilai = $('#d6_nilai_input').val(); // ambil teks input D6
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5); // ambil 5 digit pertama sebagai D5
+
+    console.log('📦 Data yang akan dikirim ke API:');
+    console.log('➡️ D5:', d5);
+    console.log('➡️ Keterangan:', keterangan);
+    console.log('➡️ Nilai:', nilai);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D6!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d6',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D6:', response);
+            alert('Data D6 berhasil disimpan! Kode berikutnya: ' + response.nextD6);
+
+            // Tambah ke dropdown nilai D6
+            $('#d6_value').append(
+                $('<option>', {
+                    value: response.nextD6,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -49,13 +107,10 @@ $('#simpanD6').click(function () {
 
 // --- Button Simpan D8 ---
 $('#simpanD8').click(function () {
-    let keterangan = $('#d8_text').val(); // ambil teks input D8
+    let keterangan = $('#d8_text').val();
+    let nilai = $('#d8_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
-    let d5 = kodeHasil.substring(0, 5); // ambil 5 digit pertama sebagai D5
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
+    let d5 = kodeHasil.substring(0, 5);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D8!');
@@ -71,21 +126,70 @@ $('#simpanD8').click(function () {
         url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d8',
         type: 'POST',
         data: {
-            _token: $('meta[name="csrf-token"]').attr(
-                'content'), // ← tambahkan CSRF di sini
+            _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D8:', response);
             alert('Data D8 berhasil disimpan! Kode berikutnya: ' + response.nextD8);
 
-            // Optional: langsung tambah ke dropdown D8
             $('#d8').append(
                 $('<option>', {
                     value: response.nextD8,
-                    text: response.nextD8 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D8:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D8.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D8 ---
+$('#simpanD8Nilai').click(function () {
+    let keterangan = $('#d8 option:selected').text();
+    let nilai = $('#d8_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D8!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d8',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D8:', response);
+            alert('Data D8 berhasil disimpan! Kode berikutnya: ' + response.nextD8);
+
+            $('#d8_value').append(
+                $('<option>', {
+                    value: response.nextD8,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -98,13 +202,10 @@ $('#simpanD8').click(function () {
 
 // --- Button Simpan D10 ---
 $('#simpanD10').click(function () {
-    let keterangan = $('#d10_text').val(); // ambil teks input D10
+    let keterangan = $('#d10_text').val();
+    let nilai = $('#d10_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
-    let d5 = kodeHasil.substring(0, 5); // ambil 5 digit pertama sebagai D5
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
+    let d5 = kodeHasil.substring(0, 5);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D10!');
@@ -120,22 +221,70 @@ $('#simpanD10').click(function () {
         url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d10',
         type: 'POST',
         data: {
-            _token: $('meta[name="csrf-token"]').attr(
-                'content'), // ← tambahkan CSRF di sini
+            _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D10:', response);
-            alert('Data D10 berhasil disimpan! Kode berikutnya: ' + response
-                .nextD10);
+            alert('Data D10 berhasil disimpan! Kode berikutnya: ' + response.nextD10);
 
-            // Optional: langsung tambah ke dropdown D10
             $('#d10').append(
                 $('<option>', {
                     value: response.nextD10,
-                    text: response.nextD10 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D10:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D10.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D10 ---
+$('#simpanD10Nilai').click(function () {
+    let keterangan = $('#d10 option:selected').text();
+    let nilai = $('#d10_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D10!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d10',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D10:', response);
+            alert('Data D10 berhasil disimpan! Kode berikutnya: ' + response.nextD10);
+
+            $('#d10_value').append(
+                $('<option>', {
+                    value: response.nextD10,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -148,13 +297,10 @@ $('#simpanD10').click(function () {
 
 // --- Button Simpan D12 ---
 $('#simpanD12').click(function () {
-    let keterangan = $('#d12_text').val(); // ambil teks input D12
+    let keterangan = $('#d12_text').val();
+    let nilai = $('#d12_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
-    let d5 = kodeHasil.substring(0, 5); // ambil 5 digit pertama sebagai D5
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
+    let d5 = kodeHasil.substring(0, 5);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D12!');
@@ -170,22 +316,70 @@ $('#simpanD12').click(function () {
         url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d12',
         type: 'POST',
         data: {
-            _token: $('meta[name="csrf-token"]').attr(
-                'content'), // ← tambahkan CSRF di sini
+            _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D12:', response);
-            alert('Data D12 berhasil disimpan! Kode berikutnya: ' + response
-                .nextD12);
+            alert('Data D12 berhasil disimpan! Kode berikutnya: ' + response.nextD12);
 
-            // Optional: langsung tambah ke dropdown D12
             $('#d12').append(
                 $('<option>', {
                     value: response.nextD12,
-                    text: response.nextD12 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D12:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D12.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D12 ---
+$('#simpanD12Nilai').click(function () {
+    let keterangan = $('#d12 option:selected').text();
+    let nilai = $('#d12_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D12!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d12',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D12:', response);
+            alert('Data D12 berhasil disimpan! Kode berikutnya: ' + response.nextD12);
+
+            $('#d12_value').append(
+                $('<option>', {
+                    value: response.nextD12,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -199,12 +393,9 @@ $('#simpanD12').click(function () {
 // --- Button Simpan D14 ---
 $('#simpanD14').click(function () {
     let keterangan = $('#d14_text').val();
+    let nilai = $('#d14_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
     let d5 = kodeHasil.substring(0, 5);
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D14!');
@@ -223,6 +414,7 @@ $('#simpanD14').click(function () {
             _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D14:', response);
@@ -231,8 +423,58 @@ $('#simpanD14').click(function () {
             $('#d14').append(
                 $('<option>', {
                     value: response.nextD14,
-                    text: response.nextD14 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D14:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D14.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D14 ---
+$('#simpanD14Nilai').click(function () {
+    let keterangan = $('#d14 option:selected').text();
+    let nilai = $('#d14_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D14!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d14',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D14:', response);
+            alert('Data D14 berhasil disimpan! Kode berikutnya: ' + response.nextD14);
+
+            $('#d14_value').append(
+                $('<option>', {
+                    value: response.nextD14,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -246,12 +488,9 @@ $('#simpanD14').click(function () {
 // --- Button Simpan D16 ---
 $('#simpanD16').click(function () {
     let keterangan = $('#d16_text').val();
+    let nilai = $('#d16_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
     let d5 = kodeHasil.substring(0, 5);
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D16!');
@@ -270,6 +509,7 @@ $('#simpanD16').click(function () {
             _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D16:', response);
@@ -278,8 +518,58 @@ $('#simpanD16').click(function () {
             $('#d16').append(
                 $('<option>', {
                     value: response.nextD16,
-                    text: response.nextD16 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D16:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D16.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D16 ---
+$('#simpanD16Nilai').click(function () {
+    let keterangan = $('#d16 option:selected').text();
+    let nilai = $('#d16_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D16!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d16',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D16:', response);
+            alert('Data D16 berhasil disimpan! Kode berikutnya: ' + response.nextD16);
+
+            $('#d16_value').append(
+                $('<option>', {
+                    value: response.nextD16,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -293,12 +583,9 @@ $('#simpanD16').click(function () {
 // --- Button Simpan D18 ---
 $('#simpanD18').click(function () {
     let keterangan = $('#d18_text').val();
+    let nilai = $('#d18_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
     let d5 = kodeHasil.substring(0, 5);
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D18!');
@@ -317,6 +604,7 @@ $('#simpanD18').click(function () {
             _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D18:', response);
@@ -325,8 +613,58 @@ $('#simpanD18').click(function () {
             $('#d18').append(
                 $('<option>', {
                     value: response.nextD18,
-                    text: response.nextD18 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D18:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D18.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D18 ---
+$('#simpanD18Nilai').click(function () {
+    let keterangan = $('#d18 option:selected').text();
+    let nilai = $('#d18_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D18!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d18',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D18:', response);
+            alert('Data D18 berhasil disimpan! Kode berikutnya: ' + response.nextD18);
+
+            $('#d18_value').append(
+                $('<option>', {
+                    value: response.nextD18,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -340,12 +678,9 @@ $('#simpanD18').click(function () {
 // --- Button Simpan D20 ---
 $('#simpanD20').click(function () {
     let keterangan = $('#d20_text').val();
+    let nilai = $('#d20_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
     let d5 = kodeHasil.substring(0, 5);
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D20!');
@@ -364,6 +699,7 @@ $('#simpanD20').click(function () {
             _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D20:', response);
@@ -372,8 +708,58 @@ $('#simpanD20').click(function () {
             $('#d20').append(
                 $('<option>', {
                     value: response.nextD20,
-                    text: response.nextD20 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D20:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D20.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D20 ---
+$('#simpanD20Nilai').click(function () {
+    let keterangan = $('#d20 option:selected').text();
+    let nilai = $('#d20_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D20!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d20',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D20:', response);
+            alert('Data D20 berhasil disimpan! Kode berikutnya: ' + response.nextD20);
+
+            $('#d20_value').append(
+                $('<option>', {
+                    value: response.nextD20,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -387,12 +773,9 @@ $('#simpanD20').click(function () {
 // --- Button Simpan D22 ---
 $('#simpanD22').click(function () {
     let keterangan = $('#d22_text').val();
+    let nilai = $('#d22_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
     let d5 = kodeHasil.substring(0, 5);
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D22!');
@@ -411,6 +794,7 @@ $('#simpanD22').click(function () {
             _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D22:', response);
@@ -419,8 +803,58 @@ $('#simpanD22').click(function () {
             $('#d22').append(
                 $('<option>', {
                     value: response.nextD22,
-                    text: response.nextD22 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D22:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D22.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D22 ---
+$('#simpanD22Nilai').click(function () {
+    let keterangan = $('#d22 option:selected').text();
+    let nilai = $('#d22_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D22!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d22',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D22:', response);
+            alert('Data D22 berhasil disimpan! Kode berikutnya: ' + response.nextD22);
+
+            $('#d22_value').append(
+                $('<option>', {
+                    value: response.nextD22,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },
@@ -434,12 +868,9 @@ $('#simpanD22').click(function () {
 // --- Button Simpan D24 ---
 $('#simpanD24').click(function () {
     let keterangan = $('#d24_text').val();
+    let nilai = $('#d24_nilai_input').val() || '-';
     let kodeHasil = $('#kode_barang_hasil').val() || '';
     let d5 = kodeHasil.substring(0, 5);
-
-    console.log('📦 Data yang akan dikirim ke API:');
-    console.log('➡️ D5:', d5);
-    console.log('➡️ Keterangan:', keterangan);
 
     if (!d5 || d5 === '00000') {
         alert('D1–D5 belum lengkap, tidak bisa menyimpan data D24!');
@@ -458,6 +889,7 @@ $('#simpanD24').click(function () {
             _token: $('meta[name="csrf-token"]').attr('content'),
             d5: d5,
             keterangan: keterangan,
+            nilai: nilai,
         },
         success: function (response) {
             console.log('✅ Berhasil simpan D24:', response);
@@ -466,8 +898,58 @@ $('#simpanD24').click(function () {
             $('#d24').append(
                 $('<option>', {
                     value: response.nextD24,
-                    text: response.nextD24 + ' | ' + keterangan,
+                    text: keterangan,
                     'data-text': keterangan,
+                })
+            ).trigger('change.select2');
+        },
+        error: function (xhr) {
+            console.error('❌ Gagal simpan D24:', xhr.responseText);
+            alert('Terjadi kesalahan saat menyimpan data D24.');
+        }
+    });
+});
+
+// --- Button Simpan Nilai D24 ---
+$('#simpanD24Nilai').click(function () {
+    let keterangan = $('#d24 option:selected').text();
+    let nilai = $('#d24_nilai_input').val();
+    let kodeHasil = $('#kode_barang_hasil').val() || '';
+    let d5 = kodeHasil.substring(0, 5);
+
+    if (!d5 || d5 === '00000') {
+        alert('D1–D5 belum lengkap, tidak bisa menyimpan data D24!');
+        return;
+    }
+
+    if (!keterangan) {
+        alert('Keterangan tidak boleh kosong!');
+        return;
+    }
+
+    if (!nilai) {
+        alert('Nilai tidak boleh kosong!');
+        return;
+    }
+
+    $.ajax({
+        url: '/master_barang_foxpro/public/index.php/api_simpan_spesifikasi/d24',
+        type: 'POST',
+        data: {
+            _token: $('meta[name="csrf-token"]').attr('content'),
+            d5: d5,
+            keterangan: keterangan,
+            nilai: nilai,
+        },
+        success: function (response) {
+            console.log('✅ Berhasil simpan D24:', response);
+            alert('Data D24 berhasil disimpan! Kode berikutnya: ' + response.nextD24);
+
+            $('#d24_value').append(
+                $('<option>', {
+                    value: response.nextD24,
+                    text: nilai,
+                    'data-text': nilai,
                 })
             ).trigger('change.select2');
         },

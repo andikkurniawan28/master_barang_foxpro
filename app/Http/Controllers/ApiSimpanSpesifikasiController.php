@@ -107,142 +107,6 @@ class ApiSimpanSpesifikasiController extends Controller
         return 'Z';
     }
 
-    public function simpanD6(Request $request)
-    {
-        $request->validate([
-            'd5' => 'required|string|max:10',
-            'keterangan' => 'nullable|string|max:255',
-        ]);
-
-        $d5 = $request->d5;
-
-        $data = DB::table('d6')->where('D5', $d5)->get();
-
-        $maxD6 = $data->max('D6');
-
-        $nextD6 = $this->tentukanUrutanSelanjutnya($maxD6);
-
-        DB::table('d6')->insert([
-            'D5' => $d5,
-            'D6' => $nextD6,
-            'KET' => $request->keterangan,
-        ]);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data D6 berhasil disimpan.',
-            'data' => [
-                'D5' => $d5,
-                'D6' => $nextD6,
-                'KET' => $request->keterangan,
-            ],
-            'maxD6' => $maxD6,
-            'nextD6' => $nextD6,
-        ]);
-    }
-
-    public function simpanD8(Request $request)
-    {
-        $request->validate([
-            'd5' => 'required|string|max:10',
-            'keterangan' => 'nullable|string|max:255',
-        ]);
-
-        $d5 = $request->d5;
-
-        $data = DB::table('d8')->where('D5', $d5)->get();
-
-        $maxD8 = $data->max('D8');
-
-        $nextD8 = $this->tentukanUrutanSelanjutnya($maxD8);
-
-        DB::table('d8')->insert([
-            'D5' => $d5,
-            'D8' => $nextD8,
-            'KET' => $request->keterangan,
-        ]);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data D8 berhasil disimpan.',
-            'data' => [
-                'D5' => $d5,
-                'D8' => $nextD8,
-                'KET' => $request->keterangan,
-            ],
-            'maxD8' => $maxD8,
-            'nextD8' => $nextD8,
-        ]);
-    }
-
-    public function simpanD10(Request $request)
-    {
-        $request->validate([
-            'd5' => 'required|string|max:10',
-            'keterangan' => 'nullable|string|max:255',
-        ]);
-
-        $d5 = $request->d5;
-
-        $data = DB::table('d10')->where('D5', $d5)->get();
-
-        $maxD10 = $data->max('D10');
-
-        $nextD10 = $this->tentukanUrutanSelanjutnya($maxD10);
-
-        DB::table('d10')->insert([
-            'D5' => $d5,
-            'D10' => $nextD10,
-            'KET' => $request->keterangan,
-        ]);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data D10 berhasil disimpan.',
-            'data' => [
-                'D5' => $d5,
-                'D10' => $nextD10,
-                'KET' => $request->keterangan,
-            ],
-            'maxD10' => $maxD10,
-            'nextD10' => $nextD10,
-        ]);
-    }
-
-    public function simpanD12(Request $request)
-    {
-        $request->validate([
-            'd5' => 'required|string|max:12',
-            'keterangan' => 'nullable|string|max:255',
-        ]);
-
-        $d5 = $request->d5;
-
-        $data = DB::table('d12')->where('D5', $d5)->get();
-
-        $maxD12 = $data->max('D12');
-
-        $nextD12 = $this->tentukanUrutanSelanjutnya($maxD12);
-
-        DB::table('d12')->insert([
-            'D5' => $d5,
-            'D12' => $nextD12,
-            'KET' => $request->keterangan,
-        ]);
-
-        return response()->json([
-            'status' => 'success',
-            'message' => 'Data D12 berhasil disimpan.',
-            'data' => [
-                'D5' => $d5,
-                'D12' => $nextD12,
-                'KET' => $request->keterangan,
-            ],
-            'maxD12' => $maxD12,
-            'nextD12' => $nextD12,
-        ]);
-    }
-
     public function simpanD2(Request $request)
     {
         $request->validate([
@@ -379,10 +243,160 @@ class ApiSimpanSpesifikasiController extends Controller
         ]);
     }
 
+    // Spesifikasi
+
+    public function simpanD6(Request $request)
+    {
+        $request->validate([
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $d5 = $request->d5;
+
+        $data = DB::table('d6')->where('D5', $d5)->get();
+
+        $maxD6 = $data->max('D6');
+
+        $nextD6 = $this->tentukanUrutanSelanjutnya($maxD6);
+
+        DB::table('d6')->insert([
+            'D5' => $d5,
+            'D6' => $nextD6,
+            'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D6 berhasil disimpan.',
+            'data' => [
+                'D5' => $d5,
+                'D6' => $nextD6,
+                'KET' => $request->keterangan,
+            ],
+            'maxD6' => $maxD6,
+            'nextD6' => $nextD6,
+        ]);
+    }
+
+    public function simpanD8(Request $request)
+    {
+        $request->validate([
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $d5 = $request->d5;
+
+        $data = DB::table('d8')->where('D5', $d5)->get();
+
+        $maxD8 = $data->max('D8');
+
+        $nextD8 = $this->tentukanUrutanSelanjutnya($maxD8);
+
+        DB::table('d8')->insert([
+            'D5' => $d5,
+            'D8' => $nextD8,
+            'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D8 berhasil disimpan.',
+            'data' => [
+                'D5' => $d5,
+                'D8' => $nextD8,
+                'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
+            ],
+            'maxD8' => $maxD8,
+            'nextD8' => $nextD8,
+        ]);
+    }
+
+    public function simpanD10(Request $request)
+    {
+        $request->validate([
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $d5 = $request->d5;
+
+        $data = DB::table('d10')->where('D5', $d5)->get();
+
+        $maxD10 = $data->max('D10');
+
+        $nextD10 = $this->tentukanUrutanSelanjutnya($maxD10);
+
+        DB::table('d10')->insert([
+            'D5' => $d5,
+            'D10' => $nextD10,
+            'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D10 berhasil disimpan.',
+            'data' => [
+                'D5' => $d5,
+                'D10' => $nextD10,
+                'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
+            ],
+            'maxD10' => $maxD10,
+            'nextD10' => $nextD10,
+        ]);
+    }
+
+    public function simpanD12(Request $request)
+    {
+        $request->validate([
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
+            'keterangan' => 'nullable|string|max:255',
+        ]);
+
+        $d5 = $request->d5;
+
+        $data = DB::table('d12')->where('D5', $d5)->get();
+
+        $maxD12 = $data->max('D12');
+
+        $nextD12 = $this->tentukanUrutanSelanjutnya($maxD12);
+
+        DB::table('d12')->insert([
+            'D5' => $d5,
+            'D12' => $nextD12,
+            'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
+        ]);
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Data D12 berhasil disimpan.',
+            'data' => [
+                'D5' => $d5,
+                'D12' => $nextD12,
+                'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
+            ],
+            'maxD12' => $maxD12,
+            'nextD12' => $nextD12,
+        ]);
+    }
+
     public function simpanD14(Request $request)
     {
         $request->validate([
-            'd5' => 'required|string|max:10',
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -398,6 +412,7 @@ class ApiSimpanSpesifikasiController extends Controller
             'D5' => $d5,
             'D14' => $nextD14,
             'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
         ]);
 
         return response()->json([
@@ -407,6 +422,7 @@ class ApiSimpanSpesifikasiController extends Controller
                 'D5' => $d5,
                 'D14' => $nextD14,
                 'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
             ],
             'maxD14' => $maxD14,
             'nextD14' => $nextD14,
@@ -416,7 +432,8 @@ class ApiSimpanSpesifikasiController extends Controller
     public function simpanD16(Request $request)
     {
         $request->validate([
-            'd5' => 'required|string|max:10',
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -432,6 +449,7 @@ class ApiSimpanSpesifikasiController extends Controller
             'D5' => $d5,
             'D16' => $nextD16,
             'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
         ]);
 
         return response()->json([
@@ -441,6 +459,7 @@ class ApiSimpanSpesifikasiController extends Controller
                 'D5' => $d5,
                 'D16' => $nextD16,
                 'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
             ],
             'maxD16' => $maxD16,
             'nextD16' => $nextD16,
@@ -450,7 +469,8 @@ class ApiSimpanSpesifikasiController extends Controller
     public function simpanD18(Request $request)
     {
         $request->validate([
-            'd5' => 'required|string|max:10',
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -466,6 +486,7 @@ class ApiSimpanSpesifikasiController extends Controller
             'D5' => $d5,
             'D18' => $nextD18,
             'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
         ]);
 
         return response()->json([
@@ -475,6 +496,7 @@ class ApiSimpanSpesifikasiController extends Controller
                 'D5' => $d5,
                 'D18' => $nextD18,
                 'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
             ],
             'maxD18' => $maxD18,
             'nextD18' => $nextD18,
@@ -484,7 +506,8 @@ class ApiSimpanSpesifikasiController extends Controller
     public function simpanD20(Request $request)
     {
         $request->validate([
-            'd5' => 'required|string|max:10',
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -500,6 +523,7 @@ class ApiSimpanSpesifikasiController extends Controller
             'D5' => $d5,
             'D20' => $nextD20,
             'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
         ]);
 
         return response()->json([
@@ -509,6 +533,7 @@ class ApiSimpanSpesifikasiController extends Controller
                 'D5' => $d5,
                 'D20' => $nextD20,
                 'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
             ],
             'maxD20' => $maxD20,
             'nextD20' => $nextD20,
@@ -518,7 +543,8 @@ class ApiSimpanSpesifikasiController extends Controller
     public function simpanD22(Request $request)
     {
         $request->validate([
-            'd5' => 'required|string|max:10',
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -534,6 +560,7 @@ class ApiSimpanSpesifikasiController extends Controller
             'D5' => $d5,
             'D22' => $nextD22,
             'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
         ]);
 
         return response()->json([
@@ -543,6 +570,7 @@ class ApiSimpanSpesifikasiController extends Controller
                 'D5' => $d5,
                 'D22' => $nextD22,
                 'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
             ],
             'maxD22' => $maxD22,
             'nextD22' => $nextD22,
@@ -552,7 +580,8 @@ class ApiSimpanSpesifikasiController extends Controller
     public function simpanD24(Request $request)
     {
         $request->validate([
-            'd5' => 'required|string|max:10',
+            'd5' => 'required|string|max:255',
+            'nilai' => 'required|string|max:255',
             'keterangan' => 'nullable|string|max:255',
         ]);
 
@@ -568,6 +597,7 @@ class ApiSimpanSpesifikasiController extends Controller
             'D5' => $d5,
             'D24' => $nextD24,
             'KET' => $request->keterangan,
+            'NILAI' => $request->nilai,
         ]);
 
         return response()->json([
@@ -577,6 +607,7 @@ class ApiSimpanSpesifikasiController extends Controller
                 'D5' => $d5,
                 'D24' => $nextD24,
                 'KET' => $request->keterangan,
+                'NILAI' => $request->nilai,
             ],
             'maxD24' => $maxD24,
             'nextD24' => $nextD24,

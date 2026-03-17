@@ -88,6 +88,13 @@
                     <span>Tambah Data Barang</span></a>
             </li>
 
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item @yield('kamus_kode')">
+                <a class="nav-link" href="{{ route('kamus_kode') }}">
+                    <i class="fas fa-fw fa-book"></i>
+                    <span>Kamus Kode</span></a>
+            </li>
+
             {{-- <!-- Divider -->
             <hr class="sidebar-divider">
 
